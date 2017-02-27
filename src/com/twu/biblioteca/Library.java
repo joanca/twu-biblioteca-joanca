@@ -16,7 +16,7 @@ public class Library {
 
     public void printBookList() {
         for(int i = 0; i < books.length; i++) {
-            System.out.println(books[i]);
+            System.out.println(books[i].getTitle());
         }
     }
 }
