@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 public class Library {
-    private String[] books;
-    Library(String[] bookslist) {
+    private Book[] books;
+    Library(Book[] bookslist) {
         this.books = bookslist;
     }
 
@@ -10,11 +10,13 @@ public class Library {
         return "Welcome to Biblioteca!";
     }
 
-    public String[] getBooks(){
+    public Book[] getBooks(){
         return this.books;
     }
 
     public void printBookList() {
-
+        for(int i = 0; i < books.length; i++) {
+            System.out.println(books[i]);
+        }
     }
 }
