@@ -28,7 +28,9 @@ public class Library {
     public void printBookList() {
         System.out.format("%20s%16s%20s\n", "Book title", "Author", "Year Published");
         for(int i = 0; i < books.length; i++) {
-            System.out.format("%20s%16s%10d\n", books[i].getTitle(), books[i].getAuthor(), books[i].getPublicationYear());
+            if(!books[i].isCheckedOut()) {
+                System.out.format("%20s%16s%10d\n", books[i].getTitle(), books[i].getAuthor(), books[i].getPublicationYear());
+            }
         }
     }
 }
