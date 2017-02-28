@@ -26,4 +26,14 @@ public class LibraryTest {
 
         assertArrayEquals(books, booksList);
     }
+
+    @Test
+    public void checkout_book_should_return_boolean() {
+        Book[] bookList = new Book[1];
+        bookList[0] = new Book("Algún libro");
+
+        Library lib = new Library(bookList);
+
+        assertEquals(true, lib.checkoutBook(bookList[0]));
+    }
 }

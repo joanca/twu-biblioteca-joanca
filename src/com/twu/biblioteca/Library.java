@@ -14,9 +14,19 @@ public class Library {
         return this.books;
     }
 
+    public boolean checkoutBook(Book book) {
+        if(book.isCheckedOut()) {
+            System.out.println("That book is not available.");
+            return false;
+        }
+        System.out.println("Thank you! Enjoy the book.");
+        return true;
+    }
+
     public void printBookList() {
+        System.out.format("%20s%16s%20s\n", "Book title", "Author", "Year Published");
         for(int i = 0; i < books.length; i++) {
-            System.out.println(books[i].getTitle());
+            System.out.format("%20s%16s%10d\n", books[i].getTitle(), books[i].getAuthor(), books[i].getPublicationYear());
         }
     }
 }

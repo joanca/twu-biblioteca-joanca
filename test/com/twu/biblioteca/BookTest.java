@@ -38,4 +38,20 @@ public class BookTest {
 
         assertEquals("Kent Beck", author);
     }
+
+    @Test
+    public void is_checkedout_should_return_false() {
+        Book book = new Book("Some book");
+
+        assertEquals(false, book.isCheckedOut());
+    }
+
+    @Test
+    public void is_checkedout_should_return_true() {
+        Book book = new Book("Some book");
+
+        book.checkOut();
+
+        assertEquals(true, book.isCheckedOut());
+    }
 }
