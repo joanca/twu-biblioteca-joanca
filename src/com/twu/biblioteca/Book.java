@@ -23,6 +23,11 @@ public class Book {
             this.checkedOut = true;
     }
 
+    public void returnBook() {
+        if(this.checkedOut)
+            this.checkedOut = false;
+    }
+
     public String getTitle() {
         return this.bookTitle;
     }

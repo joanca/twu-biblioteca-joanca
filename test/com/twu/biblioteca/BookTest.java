@@ -54,4 +54,27 @@ public class BookTest {
 
         assertEquals(true, book.isCheckedOut());
     }
+
+    @Test
+    public void is_checkedout_should_return_false_after_return() {
+        Book book = new Book("Some book");
+
+        book.checkOut();
+        book.returnBook();
+
+        assertEquals(false, book.isCheckedOut());
+    }
+
+    @Test
+    public void is_checkedout_should_return_true_before_return() {
+        Book book = new Book("Some book");
+
+        book.checkOut();
+
+        assertEquals(true, book.isCheckedOut());
+
+        book.returnBook();
+
+        assertEquals(false, book.isCheckedOut());
+    }
 }

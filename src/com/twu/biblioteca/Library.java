@@ -26,6 +26,14 @@ public class Library {
         return "That book is not available.";
     }
 
+    public String succesfulReturnMessage() {
+        return "Thank you for returning the book";
+    }
+
+    public String unsuccesfulReturnMessage() {
+        return "That is not a valid book to return";
+    }
+
     public boolean bookInLibrary(Book book) {
         return booksList.contains(book);
     }

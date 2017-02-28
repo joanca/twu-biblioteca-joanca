@@ -24,4 +24,16 @@ public class Customer {
 
         return false;
     }
+
+    public boolean returnBookToLibrary(Library lib, Book book) {
+        if(lib.bookInLibrary(book) && book.isCheckedOut()) {
+            lib.succesfulReturnMessage();
+
+            return true;
+        }
+
+        lib.unsuccesfulReturnMessage();
+
+        return false;
+    }
 }
