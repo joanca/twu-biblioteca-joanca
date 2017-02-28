@@ -13,7 +13,39 @@ public class LibraryTest {
     public void get_welcome_message_should_return_greetings() {
         Library lib = new Library(new HashSet<Book>());
         String message = lib.getWelcomeMessage();
-        assertEquals(message, "Welcome to Biblioteca!");
+        assertEquals("Welcome to Biblioteca!", message);
+    }
+
+    @Test
+    public void succesful_checkout_message_should_return_thank_you() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.succesfulCheckOutMessage();
+
+        assertEquals("Thank you! Enjoy the book.", message);
+    }
+
+    @Test
+    public void unsuccesful_checkout_message_should_return_not_available() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.unsuccesfulCheckOutMessage();
+
+        assertEquals("That book is not available.", message);
+    }
+
+    @Test
+    public void succesful_return_message_should_return_thank_you() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.succesfulReturnMessage();
+
+        assertEquals("Thank you for returning the book", message);
+    }
+
+    @Test
+    public void unsuccesful_return_message_should_return_not_valid() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.unsuccesfulReturnMessage();
+
+        assertEquals("That is not a valid book to return", message);
     }
 
     @Test
@@ -37,5 +69,14 @@ public class LibraryTest {
         Library lib = new Library(bookList);
 
         assertEquals(true, lib.bookInLibrary(book));
+    }
+
+    @Test
+    public void book_in_library_should_return_false() {
+        HashSet<Book> bookList = new HashSet<Book>();
+
+        Library lib = new Library(bookList);
+
+        assertEquals(false, lib.bookInLibrary(new Book("Some book")));
     }
 }

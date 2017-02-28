@@ -29,6 +29,8 @@ public class Customer {
         if(lib.bookInLibrary(book) && book.isCheckedOut()) {
             lib.succesfulReturnMessage();
 
+            book.returnBook();
+
             return true;
         }
 
