@@ -28,12 +28,24 @@ public class LibraryTest {
     }
 
     @Test
-    public void checkout_book_should_return_boolean() {
+    public void checkout_book_should_return_true() {
         Book[] bookList = new Book[1];
-        bookList[0] = new Book("Algún libro");
+        bookList[0] = new Book("Some book");
 
         Library lib = new Library(bookList);
 
         assertEquals(true, lib.checkoutBook(bookList[0]));
+    }
+
+    @Test
+    public void checkout_book_should_return_false() {
+        Book[] bookList = new Book[1];
+        bookList[0] = new Book("Some book");
+
+        Library lib = new Library(bookList);
+
+        lib.checkoutBook(bookList[0]);
+
+        assertEquals(false, lib.checkoutBook(bookList[0]));
     }
 }

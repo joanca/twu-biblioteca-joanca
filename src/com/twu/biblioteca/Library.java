@@ -19,6 +19,8 @@ public class Library {
             System.out.println("That book is not available.");
             return false;
         }
+
+        book.checkOut();
         System.out.println("Thank you! Enjoy the book.");
         return true;
     }
