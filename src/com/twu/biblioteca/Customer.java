@@ -11,4 +11,17 @@ public class Customer {
         return this.name;
     }
 
+    public boolean checkOutBook(Library lib, Book book) {
+        if(lib.bookInLibrary(book) && !book.isCheckedOut()) {
+            lib.succesfulCheckOutMessage();
+
+            book.checkOut();
+
+            return true;
+        }
+
+        lib.unsuccesfulCheckOutMessage();
+
+        return false;
+    }
 }
