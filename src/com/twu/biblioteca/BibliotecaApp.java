@@ -1,18 +1,20 @@
 package com.twu.biblioteca;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class BibliotecaApp {
 
-    public static HashSet<Book> generateBooks(int size) {
-        HashSet<Book> books = new HashSet<Book>(size);
+    private static Map<Integer, Book> generateBooks(int size) {
+        Map<Integer, Book> books = new HashMap<Integer, Book>(size);
 
         for(int i = 0; i < size; i++) {
             Book book = new Book("Book " + (i+1));
             book.setPublicationYear(i+1);
             book.setAuthor("Author" + (i+1));
 
-            books.add(book);
+            books.put(i, book);
         }
 
         return books;

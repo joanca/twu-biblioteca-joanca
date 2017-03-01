@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import org.junit.Test;
 
 import java.lang.management.LockInfo;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -18,10 +20,10 @@ public class CustomerTest {
 
     @Test
     public void checkout_book_should_return_true() {
-        HashSet<Book> bookList = new HashSet<Book>();
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
         Book book = new Book("Some book");
 
-        bookList.add(book);
+        bookList.put(0, book);
 
         Library lib = new Library(bookList);
 
@@ -32,10 +34,10 @@ public class CustomerTest {
 
     @Test
     public void checkout_book_should_return_false() {
-        HashSet<Book> bookList = new HashSet<Book>();
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
         Book book = new Book("Some book");
 
-        bookList.add(book);
+        bookList.put(0, book);
 
         Library lib = new Library(bookList);
 
@@ -48,10 +50,10 @@ public class CustomerTest {
 
     @Test
     public void return_book_should_return_true() {
-        HashSet<Book> bookList = new HashSet<Book>();
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
         Book book = new Book("Some book");
 
-        bookList.add(book);
+        bookList.put(0, book);
 
         Library lib = new Library(bookList);
 
@@ -64,7 +66,7 @@ public class CustomerTest {
 
     @Test
     public void return_book_should_return_false_with_book_not_in_library() {
-        HashSet<Book> bookList = new HashSet<Book>();
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
 
         Library lib = new Library(bookList);
 
@@ -75,13 +77,13 @@ public class CustomerTest {
 
     @Test
     public void return_book_should_return_false_with_different_library() {
-        HashSet<Book> bookList = new HashSet<Book>();
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
         Book book = new Book("Some book");
 
-        bookList.add(book);
+        bookList.put(0, book);
 
         Library lib1 = new Library(bookList);
-        Library lib2 = new Library(new HashSet<Book>());
+        Library lib2 = new Library(new HashMap<Integer, Book>());
 
         Customer customer = new Customer("Customer");
 

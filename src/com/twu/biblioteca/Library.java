@@ -1,14 +1,11 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Library {
-    private HashSet<Book> booksList;
+    private Map<Integer, Book> booksList;
 
-    Library(HashSet<Book> booksList) {
+    Library(Map<Integer, Book> booksList) {
         this.booksList = booksList;
     }
 
@@ -16,7 +13,7 @@ public class Library {
         return "Welcome to Biblioteca!";
     }
 
-    public HashSet getBooks(){
+    public Map<Integer, Book> getBooks(){
         return this.booksList;
     }
 
@@ -49,7 +46,7 @@ public class Library {
     }
 
     public boolean bookInLibrary(Book book) {
-        return booksList.contains(book);
+        return booksList.containsValue(book);
     }
 
     public void printMainMenu() {
@@ -100,15 +97,19 @@ public class Library {
     public void printBookList() {
         System.out.println();
 
-        System.out.format("%20s%16s%20s\n", "Book title", "Author", "Year Published");
+        System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
 
-        for(Iterator iter = booksList.iterator(); iter.hasNext(); ) {
-            Book book = (Book) iter.next();
+        for(Map.Entry<Integer, Book> entry: this.booksList.entrySet()) {
+            Book book = (Book) entry.getValue();
+            int idBook = entry.getKey();
+
             if(!book.isCheckedOut()) {
-                System.out.format("%20s%16s%10d\n", book.getTitle(), book.getAuthor(), book.getPublicationYear());
+                System.out.format("%2d%20s%16s%10d\n", idBook + 1, book.getTitle(), book.getAuthor(), book.getPublicationYear());
             }
         }
 
         System.out.println();
+
+        
     }
 }
