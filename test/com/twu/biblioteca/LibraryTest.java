@@ -49,6 +49,30 @@ public class LibraryTest {
     }
 
     @Test
+    public void select_element_in_menu() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.selectElementInMenuMessage();
+
+        assertEquals("Select an element of the menu: ", message);
+    }
+
+    @Test
+    public void invalid_option_message() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.invalidOptionMessage();
+
+        assertEquals("Select a valid option!", message);
+    }
+
+    @Test
+    public void enter_your_choice_message() {
+        Library lib = new Library(new HashSet<Book>());
+        String message = lib.enterYourChoiceMessage();
+
+        assertEquals("Enter your choice: ", message);
+    }
+
+    @Test
     public void get_books_should_return_array_of_books() {
         HashSet<Book> booksList = new HashSet<Book>();
 

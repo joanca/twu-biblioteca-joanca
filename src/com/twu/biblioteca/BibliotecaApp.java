@@ -22,7 +22,9 @@ public class BibliotecaApp {
         Library lib = new Library(generateBooks(3));
 
         System.out.println(lib.getWelcomeMessage());
+        System.out.println();
 
-        lib.printBookList();
+
+        lib.printMainMenu();
     }
 }
