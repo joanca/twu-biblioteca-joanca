@@ -49,40 +49,6 @@ public class Library {
         return booksList.containsValue(book);
     }
 
-    public void printMainMenu() {
-        boolean quit = false;
-
-        while(!quit) {
-            System.out.println(this.selectElementInMenuMessage());
-
-            this.printMenuElements();
-
-            Scanner stdin = new Scanner(System.in);
-
-            System.out.print(this.enterYourChoiceMessage());
-            char selectedElement = stdin.next(".").charAt(0);
-
-            switch (selectedElement) {
-                case 'a': {
-                    this.printBookList();
-                    break;
-                }
-                case 'q': {
-                    quit = true;
-                    break;
-                }
-                default: {
-                    System.out.println();
-                    System.out.println(this.invalidOptionMessage());
-                    System.out.println();
-                    break;
-                }
-            }
-
-        }
-
-    }
-
     public void printMenuElements() {
         ArrayList<String> elements = new ArrayList<String>();
 
@@ -94,22 +60,44 @@ public class Library {
         }
     }
 
+    public void printSelectedElementInMenu(char selectedElement) {
+        boolean quit = false;
+
+        switch (selectedElement) {
+            case 'a': {
+                while(!quit) {
+                    this.printBookList();
+
+                }
+                this.printBookList();
+                break;
+            }
+            case 'q': {
+                break;
+            }
+            default: {
+                System.out.println();
+                System.out.println(this.invalidOptionMessage());
+                System.out.println();
+                break;
+            }
+        }
+    }
+
     public void printBookList() {
         System.out.println();
 
         System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
 
         for(Map.Entry<Integer, Book> entry: this.booksList.entrySet()) {
-            Book book = (Book) entry.getValue();
+            Book book = entry.getValue();
             int idBook = entry.getKey();
 
             if(!book.isCheckedOut()) {
-                System.out.format("%2d%20s%16s%10d\n", idBook + 1, book.getTitle(), book.getAuthor(), book.getPublicationYear());
+                System.out.format("%2d%20s%16s%10d\n", idBook, book.getTitle(), book.getAuthor(), book.getPublicationYear());
             }
         }
 
         System.out.println();
-
-        
     }
 }
