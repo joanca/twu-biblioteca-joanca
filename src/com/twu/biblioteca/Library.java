@@ -17,6 +17,10 @@ public class Library {
         return this.booksList;
     }
 
+    public Book getBook(int bookId) {
+        return this.booksList.get(bookId);
+    }
+
     public String succesfulCheckOutMessage() {
         return "Thank you! Enjoy the book.";
     }
@@ -60,30 +64,6 @@ public class Library {
         }
     }
 
-    public void printSelectedElementInMenu(char selectedElement) {
-        boolean quit = false;
-
-        switch (selectedElement) {
-            case 'a': {
-                while(!quit) {
-                    this.printBookList();
-
-                }
-                this.printBookList();
-                break;
-            }
-            case 'q': {
-                break;
-            }
-            default: {
-                System.out.println();
-                System.out.println(this.invalidOptionMessage());
-                System.out.println();
-                break;
-            }
-        }
-    }
-
     public void printBookList() {
         System.out.println();
 
@@ -99,5 +79,6 @@ public class Library {
         }
 
         System.out.println();
+        System.out.print("Which book you want to check out? (ID) (q to main menu) ");
     }
 }

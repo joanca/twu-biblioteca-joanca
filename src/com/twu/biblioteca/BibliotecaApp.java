@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -21,7 +20,8 @@ public class BibliotecaApp {
         return books;
     }
 
-    private static void printMainMenu(Library lib) {
+    private static void printMainMenu(Library lib, Customer customer) {
+        System.out.println();
         System.out.println(lib.selectElementInMenuMessage());
 
         lib.printMenuElements();
@@ -31,17 +31,51 @@ public class BibliotecaApp {
         System.out.print(lib.enterYourChoiceMessage());
         char selectedElement = stdin.next(".").charAt(0);
 
-        lib.printSelectedElementInMenu(selectedElement);
+        printSelectedElementInMenu(lib, customer, selectedElement);
+
+    }
+
+    private static void printSelectedElementInMenu(Library lib, Customer customer, char selectedElement) {
+        Scanner stdin = new Scanner(System.in);
+        boolean checkOut = false;
+
+        switch (selectedElement) {
+            case 'a':
+                while(!checkOut) {
+                    lib.printBookList();
+                    String choice = stdin.next();
+
+                    if(choice.equals("q")) {
+                        break;
+                    }
+
+                    int bookId = Integer.parseInt(choice);
+                    checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+                }
+
+                printMainMenu(lib, customer);
+
+                break;
+
+            case 'q':
+                break;
+
+            default:
+                System.out.println();
+                System.out.println(lib.invalidOptionMessage());
+                System.out.println();
+                break;
+        }
     }
 
     public static void main(String[] args) {
         boolean quit = false;
         Library lib = new Library(generateBooks(3));
 
+        Customer customer = new Customer("Customer");
+
         System.out.println(lib.getWelcomeMessage());
-        System.out.println();
 
-        printMainMenu(lib);
-
+        printMainMenu(lib, customer);
     }
 }

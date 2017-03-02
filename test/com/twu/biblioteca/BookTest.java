@@ -4,9 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by juancarlosaravena on 27-02-17.
- */
 public class BookTest {
     @Test
     public void get_title_of_book() {

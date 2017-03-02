@@ -12,15 +12,21 @@ public class Customer {
     }
 
     public boolean checkOutBook(Library lib, Book book) {
+        String message;
+
         if(lib.bookInLibrary(book) && !book.isCheckedOut()) {
-            lib.succesfulCheckOutMessage();
+            message = lib.succesfulCheckOutMessage();
 
             book.checkOut();
+
+            System.out.println(message);
 
             return true;
         }
 
-        lib.unsuccesfulCheckOutMessage();
+        message = lib.unsuccesfulCheckOutMessage();
+
+        System.out.println(message);
 
         return false;
     }
