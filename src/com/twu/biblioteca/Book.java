@@ -2,12 +2,13 @@ package com.twu.biblioteca;
 
 public class Book {
     private String bookTitle, author;
-    private int publicationYear;
+    private int publicationYear, bookID;
     private boolean checkedOut;
 
-    Book(String bookTitle) {
+    Book(String bookTitle, int ID) {
         this.bookTitle = bookTitle;
         this.checkedOut = false;
+        this.bookID = ID;
     }
 
     public void setPublicationYear(int year) {
@@ -39,6 +40,8 @@ public class Book {
     public String getAuthor() {
         return this.author;
     }
+
+    public int getBookID() { return this.bookID; }
 
     public boolean isCheckedOut() {
         return this.checkedOut;

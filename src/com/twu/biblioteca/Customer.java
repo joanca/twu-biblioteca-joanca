@@ -29,7 +29,7 @@ public class Customer {
 
     private void addBook(Library lib, Book book) {
         book.checkOut();
-        this.checkedOutBooks.put(lib.getBookID(book), book);
+        this.checkedOutBooks.put(book.getBookID(), book);
     }
 
     private void returnBook(Book book) {

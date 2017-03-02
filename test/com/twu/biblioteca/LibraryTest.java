@@ -87,7 +87,7 @@ public class LibraryTest {
     @Test
     public void book_in_library_should_return_true() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -102,7 +102,7 @@ public class LibraryTest {
 
         Library lib = new Library(bookList);
 
-        assertEquals(false, lib.bookInLibrary(new Book("Some book")));
+        assertEquals(false, lib.bookInLibrary(new Book("Some book", 1)));
     }
 
     @Test
@@ -117,18 +117,8 @@ public class LibraryTest {
     public void has_books_should_return_true() {
         Library lib = new Library();
 
-        lib.addBook(new Book("Some book"));
+        lib.addBook(new Book("Some book", 1));
 
         assertEquals(true, lib.hasBooks());
-    }
-
-    @Test
-    public void get_book_id_should_return_one() {
-        Library lib = new Library();
-        Book book = new Book("Some book");
-
-        lib.addBook(book);
-
-        assertEquals(1, lib.getBookID(book));
     }
 }

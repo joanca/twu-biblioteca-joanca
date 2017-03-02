@@ -19,7 +19,7 @@ public class CustomerTest {
     @Test
     public void checkout_book_should_return_true() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -33,7 +33,7 @@ public class CustomerTest {
     @Test
     public void checkout_book_should_return_false() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -49,7 +49,7 @@ public class CustomerTest {
     @Test
     public void return_book_should_return_true() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -70,13 +70,13 @@ public class CustomerTest {
 
         Customer customer = new Customer("Customer");
 
-        assertEquals(false, customer.returnBookToLibrary(lib, new Book("Other book")));
+        assertEquals(false, customer.returnBookToLibrary(lib, new Book("Other book", 1)));
     }
 
     @Test
     public void return_book_should_return_false_with_different_library() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -91,7 +91,7 @@ public class CustomerTest {
     @Test
     public void has_books_should_return_true() {
         Map<Integer, Book> bookList = new HashMap<Integer, Book>();
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -118,7 +118,7 @@ public class CustomerTest {
     @Test
     public void has_book_should_return_true() {
         Customer customer = new Customer("Customer");
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
         Map<Integer, Book> booksList = new HashMap<Integer, Book>();
         booksList.put(0, book);
 
@@ -132,7 +132,7 @@ public class CustomerTest {
     @Test
     public void has_book_should_return_false() {
         Customer customer = new Customer("Customer");
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         assertEquals(false, customer.hasBook(book));
     }

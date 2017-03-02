@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class BookTest {
     @Test
     public void get_title_of_book() {
-        Book book = new Book("TDD by Example");
+        Book book = new Book("TDD by Example", 1);
 
         String title = book.getTitle();
 
@@ -16,7 +16,7 @@ public class BookTest {
 
     @Test
     public void get_publication_year_of_book() {
-        Book book = new Book("TDD by Example");
+        Book book = new Book("TDD by Example", 1);
 
         book.setPublicationYear(2000);
 
@@ -27,7 +27,7 @@ public class BookTest {
 
     @Test
     public void get_author_of_book() {
-        Book book = new Book("TDD by Example");
+        Book book = new Book("TDD by Example", 1);
 
         book.setAuthor("Kent Beck");
 
@@ -38,14 +38,14 @@ public class BookTest {
 
     @Test
     public void is_checkedout_should_return_false() {
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         assertEquals(false, book.isCheckedOut());
     }
 
     @Test
     public void is_checkedout_should_return_true() {
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         book.checkOut();
 
@@ -54,7 +54,7 @@ public class BookTest {
 
     @Test
     public void is_checkedout_should_return_false_after_return() {
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         book.checkOut();
         book.returnBook();
@@ -64,7 +64,7 @@ public class BookTest {
 
     @Test
     public void is_checkedout_should_return_true_before_return() {
-        Book book = new Book("Some book");
+        Book book = new Book("Some book", 1);
 
         book.checkOut();
 

@@ -66,15 +66,6 @@ public class Library {
         return booksList.containsValue(book);
     }
 
-    public int getBookID(Book book) {
-        for (Map.Entry<Integer, Book> entry : this.booksList.entrySet()) {
-            if (Objects.equals(book, entry.getValue())) {
-                return entry.getKey();
-            }
-        }
-        return -1;
-    }
-
     public void printBookList() {
         System.out.println();
 

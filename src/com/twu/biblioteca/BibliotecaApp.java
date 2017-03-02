@@ -7,12 +7,12 @@ public class BibliotecaApp {
     private static Map<Integer, Book> generateBooks(int size) {
         Map<Integer, Book> books = new HashMap<Integer, Book>(size);
 
-        for(int i = 0; i < size; i++) {
-            Book book = new Book("Book " + (i+1));
-            book.setPublicationYear(i+1);
-            book.setAuthor("Author" + (i+1));
+        for(int i = 1; i <= size; i++) {
+            Book book = new Book("Book " + i, i);
+            book.setPublicationYear(i);
+            book.setAuthor("Author" + (i));
 
-            books.put(i+1, book);
+            books.put(i, book);
         }
 
         return books;
