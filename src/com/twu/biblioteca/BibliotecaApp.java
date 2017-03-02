@@ -46,36 +46,46 @@ public class BibliotecaApp {
 
     }
 
-    private static void printSelectedElementInMenu(Library lib, Customer customer, String selectedElement) {
+    private static void selectedListBooks(Library lib, Customer customer) {
         Scanner stdin = new Scanner(System.in);
         boolean checkOut = false;
 
-        if(selectedElement.equals("a")) {
-            while (!checkOut) {
-                lib.printBookList();
-                String choice = stdin.next();
+        while (!checkOut) {
+            lib.printBookList();
+            String choice = stdin.next();
 
-                if (choice.equals("q")) {
-                    break;
-                }
-
-                int bookId = Integer.parseInt(choice);
-                checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+            if (choice.equals("q")) {
+                break;
             }
+
+            int bookId = Integer.parseInt(choice);
+            checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+        }
+    }
+
+    private static void selectedReturnBooks(Library lib, Customer customer) {
+        Scanner stdin = new Scanner(System.in);
+        while (customer.hasBooks()) {
+            customer.printBookList();
+            String choice = stdin.next();
+
+            if (choice.equals("q")) {
+                break;
+            }
+
+            int bookId = Integer.parseInt(choice);
+            customer.returnBookToLibrary(lib, lib.getBook(bookId));
+        }
+    }
+
+    private static void printSelectedElementInMenu(Library lib, Customer customer, String selectedElement) {
+
+        if(selectedElement.equals("a")) {
+            selectedListBooks(lib, customer);
 
             printMainMenu(lib, customer);
         } else if(selectedElement.equals("b")) {
-            while (customer.hasBooks()) {
-                customer.printBookList();
-                String choice = stdin.next();
-
-                if (choice.equals("q")) {
-                    break;
-                }
-
-                int bookId = Integer.parseInt(choice);
-                customer.returnBookToLibrary(lib, lib.getBook(bookId));
-            }
+            selectedReturnBooks(lib, customer);
 
             printMainMenu(lib, customer);
         } else if(selectedElement.equals("q")) {
@@ -89,7 +99,6 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        boolean quit = false;
         Library lib = new Library(generateBooks(3));
 
         Customer customer = new Customer("Customer");
