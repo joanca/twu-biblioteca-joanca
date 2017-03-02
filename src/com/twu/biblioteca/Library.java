@@ -5,12 +5,17 @@ import java.util.*;
 public class Library {
     private Map<Integer, Book> booksList;
 
+    Library() {
+        this.booksList = new HashMap<Integer, Book>();
+    }
+
     Library(Map<Integer, Book> booksList) {
         this.booksList = booksList;
     }
 
-    public String getWelcomeMessage() {
-        return "Welcome to Biblioteca!";
+    public void addBook(Book book) {
+        int bookId = this.booksList.size() + 1;
+        this.booksList.put(bookId, book);
     }
 
     public Map<Integer, Book> getBooks(){
@@ -19,6 +24,14 @@ public class Library {
 
     public Book getBook(int bookId) {
         return this.booksList.get(bookId);
+    }
+
+    public boolean hasBooks() {
+        return this.booksList.size() > 0;
+    }
+
+    public String getWelcomeMessage() {
+        return "Welcome to Biblioteca!";
     }
 
     public String succesfulCheckOutMessage() {
@@ -30,11 +43,11 @@ public class Library {
     }
 
     public String succesfulReturnMessage() {
-        return "Thank you for returning the book";
+        return "Thank you for returning the book.";
     }
 
     public String unsuccesfulReturnMessage() {
-        return "That is not a valid book to return";
+        return "That is not a valid book to return.";
     }
 
     public String selectElementInMenuMessage() {
@@ -53,15 +66,13 @@ public class Library {
         return booksList.containsValue(book);
     }
 
-    public void printMenuElements() {
-        ArrayList<String> elements = new ArrayList<String>();
-
-        elements.add("[a] List Books");
-        elements.add("[q] Quit");
-
-        for(Iterator iter = elements.iterator(); iter.hasNext(); ) {
-            System.out.println(iter.next());
+    public int getBookID(Book book) {
+        for (Map.Entry<Integer, Book> entry : this.booksList.entrySet()) {
+            if (Objects.equals(book, entry.getValue())) {
+                return entry.getKey();
+            }
         }
+        return -1;
     }
 
     public void printBookList() {
@@ -79,6 +90,6 @@ public class Library {
         }
 
         System.out.println();
-        System.out.print("Which book you want to check out? (ID) (q to main menu) ");
+        System.out.print("Which book do you want to check out? (ID) (q to main menu) ");
     }
 }

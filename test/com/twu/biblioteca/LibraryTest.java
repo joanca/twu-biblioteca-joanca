@@ -38,7 +38,7 @@ public class LibraryTest {
         Library lib = new Library(new HashMap<Integer, Book>());
         String message = lib.succesfulReturnMessage();
 
-        assertEquals("Thank you for returning the book", message);
+        assertEquals("Thank you for returning the book.", message);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class LibraryTest {
         Library lib = new Library(new HashMap<Integer, Book>());
         String message = lib.unsuccesfulReturnMessage();
 
-        assertEquals("That is not a valid book to return", message);
+        assertEquals("That is not a valid book to return.", message);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void get_books_should_return_array_of_books() {
+    public void get_books_should_return_map_of_books() {
         Map<Integer, Book> booksList = new HashMap<Integer, Book>();
 
         Library lib = new Library(booksList);
@@ -103,5 +103,32 @@ public class LibraryTest {
         Library lib = new Library(bookList);
 
         assertEquals(false, lib.bookInLibrary(new Book("Some book")));
+    }
+
+    @Test
+    public void has_books_should_return_false() {
+        Map<Integer, Book> booksList = new HashMap<Integer, Book>();
+        Library lib = new Library(booksList);
+
+        assertEquals(false, lib.hasBooks());
+    }
+
+    @Test
+    public void has_books_should_return_true() {
+        Library lib = new Library();
+
+        lib.addBook(new Book("Some book"));
+
+        assertEquals(true, lib.hasBooks());
+    }
+
+    @Test
+    public void get_book_id_should_return_one() {
+        Library lib = new Library();
+        Book book = new Book("Some book");
+
+        lib.addBook(book);
+
+        assertEquals(1, lib.getBookID(book));
     }
 }

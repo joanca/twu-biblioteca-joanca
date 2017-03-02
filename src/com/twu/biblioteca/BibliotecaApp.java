@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class BibliotecaApp {
 
@@ -20,51 +18,73 @@ public class BibliotecaApp {
         return books;
     }
 
+    private static void printMenuElements(Customer customer) {
+        String[] elements = new String[3];
+
+        elements[0] = "[a] List Books";
+        elements[1] = "[b] Return Books";
+        elements[2] = "[q] Quit";
+
+        for(int i = 0; i < elements.length; i++) {
+            if(!customer.hasBooks() && (i == 1)) continue;
+            System.out.println(elements[i]);
+        }
+    }
+
     private static void printMainMenu(Library lib, Customer customer) {
         System.out.println();
         System.out.println(lib.selectElementInMenuMessage());
 
-        lib.printMenuElements();
+        printMenuElements(customer);
 
         Scanner stdin = new Scanner(System.in);
 
         System.out.print(lib.enterYourChoiceMessage());
-        char selectedElement = stdin.next(".").charAt(0);
+        String selectedElement = stdin.next();
 
         printSelectedElementInMenu(lib, customer, selectedElement);
 
     }
 
-    private static void printSelectedElementInMenu(Library lib, Customer customer, char selectedElement) {
+    private static void printSelectedElementInMenu(Library lib, Customer customer, String selectedElement) {
         Scanner stdin = new Scanner(System.in);
         boolean checkOut = false;
 
-        switch (selectedElement) {
-            case 'a':
-                while(!checkOut) {
-                    lib.printBookList();
-                    String choice = stdin.next();
+        if(selectedElement.equals("a")) {
+            while (!checkOut) {
+                lib.printBookList();
+                String choice = stdin.next();
 
-                    if(choice.equals("q")) {
-                        break;
-                    }
-
-                    int bookId = Integer.parseInt(choice);
-                    checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+                if (choice.equals("q")) {
+                    break;
                 }
 
-                printMainMenu(lib, customer);
+                int bookId = Integer.parseInt(choice);
+                checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+            }
 
-                break;
+            printMainMenu(lib, customer);
+        } else if(selectedElement.equals("b")) {
+            while (customer.hasBooks()) {
+                customer.printBookList();
+                String choice = stdin.next();
 
-            case 'q':
-                break;
+                if (choice.equals("q")) {
+                    break;
+                }
 
-            default:
-                System.out.println();
-                System.out.println(lib.invalidOptionMessage());
-                System.out.println();
-                break;
+                int bookId = Integer.parseInt(choice);
+                customer.returnBookToLibrary(lib, lib.getBook(bookId));
+            }
+
+            printMainMenu(lib, customer);
+        } else if(selectedElement.equals("q")) {
+
+        } else {
+            System.out.println();
+            System.out.println(lib.invalidOptionMessage());
+
+            printMainMenu(lib, customer);
         }
     }
 

@@ -87,4 +87,61 @@ public class CustomerTest {
 
         assertEquals(false, customer.returnBookToLibrary(lib2, book));
     }
+
+    @Test
+    public void has_books_should_return_true() {
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
+        Book book = new Book("Some book");
+
+        bookList.put(0, book);
+
+        Library lib = new Library(bookList);
+
+        Customer customer = new Customer("Customer");
+
+        customer.checkOutBook(lib, book);
+
+        assertEquals(true, customer.hasBooks());
+    }
+
+    @Test
+    public void has_books_should_return_false() {
+        Map<Integer, Book> bookList = new HashMap<Integer, Book>();
+
+        Library lib = new Library(bookList);
+        Customer customer = new Customer("Customer");
+
+
+        assertEquals(false, customer.hasBooks());
+    }
+
+    @Test
+    public void has_book_should_return_true() {
+        Customer customer = new Customer("Customer");
+        Book book = new Book("Some book");
+        Map<Integer, Book> booksList = new HashMap<Integer, Book>();
+        booksList.put(0, book);
+
+        Library lib = new Library(booksList);
+
+        customer.checkOutBook(lib, book);
+
+        assertEquals(true, customer.hasBook(book));
+    }
+
+    @Test
+    public void has_book_should_return_false() {
+        Customer customer = new Customer("Customer");
+        Book book = new Book("Some book");
+
+        assertEquals(false, customer.hasBook(book));
+    }
+
+    @Test
+    public void get_books_should_return_map_of_books() {
+        Customer customer = new Customer("Customer");
+        Map<Integer, Book> books = new HashMap<Integer, Book>();
+
+        assertEquals(books, customer.getBooks());
+    }
 }
