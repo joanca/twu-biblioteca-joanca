@@ -18,6 +18,18 @@ public class BibliotecaApp {
         return books;
     }
 
+    private static Map<Integer, Media> generateMovies(int size) {
+        Map<Integer, Media> movies = new HashMap<Integer, Media>(size);
+
+        for(int i = 1; i <= size; i++) {
+            Movie movie = new Movie("Movie " + i, i);
+
+            movies.put(i, movie);
+        }
+
+        return movies;
+    }
+
     private static void printMenuElements(Customer customer) {
         String[] elements = new String[3];
 

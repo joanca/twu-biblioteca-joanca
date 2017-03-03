@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 public class Media {
     private String title;
-    private int mediaID;
+    private int mediaID, publicationYear;
     private boolean checkedOut;
 
     Media(String title, int ID) {
@@ -17,6 +17,14 @@ public class Media {
 
     public String getTitle() {
         return this.title;
+    }
+
+    public void setPublicationYear(int year) {
+        this.publicationYear = year;
+    }
+
+    public int getPublicationYear() {
+        return this.publicationYear;
     }
 
     public void changeStatus() {
