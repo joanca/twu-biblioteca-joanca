@@ -4,8 +4,8 @@ import java.util.*;
 
 public class BibliotecaApp {
 
-    private static Map<Integer, Book> generateBooks(int size) {
-        Map<Integer, Book> books = new HashMap<Integer, Book>(size);
+    private static Map<Integer, Media> generateBooks(int size) {
+        Map<Integer, Media> books = new HashMap<Integer, Media>(size);
 
         for(int i = 1; i <= size; i++) {
             Book book = new Book("Book " + i, i);
@@ -74,7 +74,7 @@ public class BibliotecaApp {
             }
 
             int bookId = Integer.parseInt(choice);
-            customer.returnBookToLibrary(lib, lib.getBook(bookId));
+            lib.returnMedia(customer, lib.getBook(bookId));
         }
     }
 
@@ -101,7 +101,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Library lib = new Library(generateBooks(3));
 
-        Customer customer = new Customer("Customer");
+        Customer customer = new Customer("Customer", 1);
 
         System.out.println(lib.getWelcomeMessage());
 

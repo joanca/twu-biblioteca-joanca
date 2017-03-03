@@ -57,7 +57,7 @@ public class BookTest {
         Book book = new Book("Some book", 1);
 
         book.checkOut();
-        book.returnBook();
+        book.returnMedia();
 
         assertEquals(false, book.isCheckedOut());
     }
@@ -70,7 +70,7 @@ public class BookTest {
 
         assertEquals(true, book.isCheckedOut());
 
-        book.returnBook();
+        book.returnMedia();
 
         assertEquals(false, book.isCheckedOut());
     }

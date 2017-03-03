@@ -4,11 +4,13 @@ import java.util.*;
 
 public class Customer {
     private String name;
-    private Map<Integer, Book> checkedOutBooks;
+    private Map<Integer, Media> checkedOutBooks;
+    private int customerID;
 
-    Customer(String name) {
+    Customer(String name, int ID) {
         this.name = name;
-        this.checkedOutBooks = new HashMap<Integer, Book>();
+        this.checkedOutBooks = new HashMap<Integer, Media>();
+        this.customerID = ID;
     }
 
     public String getName() {
@@ -19,26 +21,26 @@ public class Customer {
         return this.checkedOutBooks.size() > 0;
     }
 
-    public boolean hasBook(Book book) {
+    public boolean hasCheckedOut(Media book) {
         return this.checkedOutBooks.containsValue(book);
     }
 
-    public Map<Integer, Book> getBooks() {
+    public Map<Integer, Media> getBooks() {
         return this.checkedOutBooks;
     }
 
-    private void addBook(Library lib, Book book) {
+    public void addBook(Media book) {
         book.checkOut();
-        this.checkedOutBooks.put(book.getBookID(), book);
+        this.checkedOutBooks.put(book.getID(), book);
     }
 
-    private void returnBook(Book book) {
-        book.returnBook();
+    public void popMedia(Media book) {
+        book.returnMedia();
         this.checkedOutBooks.remove(this.getKeyFromValue(book));
     }
 
-    private int getKeyFromValue(Book book) {
-        for (Map.Entry<Integer, Book> entry : checkedOutBooks.entrySet()) {
+    private int getKeyFromValue(Media book) {
+        for (Map.Entry<Integer, Media> entry : checkedOutBooks.entrySet()) {
             if (Objects.equals(book, entry.getValue())) {
                 return entry.getKey();
             }
@@ -46,13 +48,13 @@ public class Customer {
         return -1;
     }
 
-    public boolean checkOutBook(Library lib, Book book) {
+    public boolean checkOutBook(Library lib, Media book) {
         String message;
 
-        if(lib.bookInLibrary(book) && !book.isCheckedOut()) {
+        if(lib.mediaInLibrary(book) && !book.isCheckedOut()) {
             message = lib.succesfulCheckOutMessage();
 
-            this.addBook(lib, book);
+            this.addBook(book);
 
             System.out.println(message);
 
@@ -66,36 +68,15 @@ public class Customer {
         return false;
     }
 
-    public boolean returnBookToLibrary(Library lib, Book book) {
-        String message;
-
-        if(lib.bookInLibrary(book) && book.isCheckedOut() && this.hasBook(book)) {
-            message = lib.succesfulReturnMessage();
-
-            this.returnBook(book);
-
-            System.out.println(message);
-
-            return true;
-        }
-
-        message = lib.unsuccesfulReturnMessage();
-
-        System.out.println(message);
-
-        return false;
-    }
-
     public void printBookList() {
         System.out.println();
 
         System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
 
-        for(Map.Entry<Integer, Book> entry: this.checkedOutBooks.entrySet()) {
-            Book book = entry.getValue();
-            int idBook = entry.getKey();
+        for(Map.Entry<Integer, Media> entry: this.checkedOutBooks.entrySet()) {
+            Book book = (Book) entry.getValue();
 
-            System.out.format("%2d%20s%16s%10d\n", idBook, book.getTitle(), book.getAuthor(), book.getPublicationYear());
+            System.out.format("%2d%20s%16s%10d\n", book.getID(), book.getTitle(), book.getAuthor(), book.getPublicationYear());
         }
 
         System.out.println();
