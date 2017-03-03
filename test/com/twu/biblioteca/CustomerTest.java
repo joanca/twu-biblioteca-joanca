@@ -17,36 +17,6 @@ public class CustomerTest {
     }
 
     @Test
-    public void checkout_book_should_return_true() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
-        Book book = new Book("Some book", 1);
-
-        bookList.put(0, book);
-
-        Library lib = new Library(bookList);
-
-        Customer customer = new Customer("Customer", 1);
-
-        assertEquals(true, customer.checkOutBook(lib, book));
-    }
-
-    @Test
-    public void checkout_book_should_return_false() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
-        Book book = new Book("Some book", 1);
-
-        bookList.put(0, book);
-
-        Library lib = new Library(bookList);
-
-        Customer customer = new Customer("Customer", 1);
-
-        customer.checkOutBook(lib, book);
-
-        assertEquals(false, customer.checkOutBook(lib, book));
-    }
-
-    @Test
     public void has_books_should_return_true() {
         Map<Integer, Media> bookList = new HashMap<Integer, Media>();
         Book book = new Book("Some book", 1);
@@ -57,7 +27,7 @@ public class CustomerTest {
 
         Customer customer = new Customer("Customer", 1);
 
-        customer.checkOutBook(lib, book);
+        lib.checkOutMedia(customer, book);
 
         assertEquals(true, customer.hasBooks());
     }
@@ -82,7 +52,7 @@ public class CustomerTest {
 
         Library lib = new Library(booksList);
 
-        customer.checkOutBook(lib, book);
+        lib.checkOutMedia(customer, book);
 
         assertEquals(true, customer.hasCheckedOut(book));
     }

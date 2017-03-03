@@ -4,12 +4,13 @@ import java.util.*;
 
 public class Customer {
     private String name;
-    private Map<Integer, Media> checkedOutBooks;
+    private Map<Integer, Media> checkedOutBooks, checkedOutMovies;
     private int customerID;
 
     Customer(String name, int ID) {
         this.name = name;
         this.checkedOutBooks = new HashMap<Integer, Media>();
+        this.checkedOutMovies = new HashMap<Integer, Media>();
         this.customerID = ID;
     }
 
@@ -29,43 +30,32 @@ public class Customer {
         return this.checkedOutBooks;
     }
 
-    public void addBook(Media book) {
-        book.checkOut();
+    public void addMedia(Media media) {
+        media.checkOut();
+        if(media instanceof Book) this.addBook(media);
+        else this.addMovie(media);
+    }
+
+    private void addBook(Media book) {
         this.checkedOutBooks.put(book.getID(), book);
     }
 
-    public void popMedia(Media book) {
-        book.returnMedia();
-        this.checkedOutBooks.remove(this.getKeyFromValue(book));
+    private void addMovie(Media movie) {
+        this.checkedOutMovies.put(movie.getID(), movie);
     }
 
-    private int getKeyFromValue(Media book) {
-        for (Map.Entry<Integer, Media> entry : checkedOutBooks.entrySet()) {
-            if (Objects.equals(book, entry.getValue())) {
-                return entry.getKey();
-            }
-        }
-        return -1;
+    public void popMedia(Media media) {
+        media.returnMedia();
+        if(media instanceof Book) this.popBook(media);
+        else this.popMovie(media);
     }
 
-    public boolean checkOutBook(Library lib, Media book) {
-        String message;
+    private void popBook(Media book) {
+        this.checkedOutBooks.remove(book.getID());
+    }
 
-        if(lib.mediaInLibrary(book) && !book.isCheckedOut()) {
-            message = lib.succesfulCheckOutMessage();
-
-            this.addBook(book);
-
-            System.out.println(message);
-
-            return true;
-        }
-
-        message = lib.unsuccesfulCheckOutMessage();
-
-        System.out.println(message);
-
-        return false;
+    private void popMovie(Media movie) {
+        this.checkedOutMovies.remove(movie.getID());
     }
 
     public void printBookList() {

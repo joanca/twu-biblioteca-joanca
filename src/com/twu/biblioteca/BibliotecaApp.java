@@ -59,7 +59,7 @@ public class BibliotecaApp {
             }
 
             int bookId = Integer.parseInt(choice);
-            checkOut = customer.checkOutBook(lib, lib.getBook(bookId));
+            checkOut = lib.checkOutMedia(customer, lib.getBook(bookId));
         }
     }
 

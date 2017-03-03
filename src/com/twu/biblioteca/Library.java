@@ -77,20 +77,39 @@ public class Library {
     }
 
     public boolean checkOutMedia(Customer customer, Media media) {
+        String message;
         if(this.mediaInLibrary(media) && !media.isCheckedOut()) {
+            message = this.succesfulCheckOutMessage();
+
+            customer.addMedia(media);
+
+            System.out.println(message);
             return true;
         }
+        message = this.unsuccesfulCheckOutMessage();
+
+        System.out.println(message);
+
         return false;
     }
 
     public boolean returnMedia(Customer customer, Media media) {
+        String message;
+
         if(this.mediaInLibrary(media) && customer.hasCheckedOut(media) && media.isCheckedOut()) {
+            message = this.succesfulReturnMessage();
+
             media.changeStatus();
 
             customer.popMedia(media);
 
+            System.out.println(message);
+
             return true;
         }
+        message = this.unsuccesfulReturnMessage();
+
+        System.out.println(message);
 
         return false;
     }

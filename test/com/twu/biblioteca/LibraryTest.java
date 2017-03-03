@@ -130,7 +130,7 @@ public class LibraryTest {
 
         Customer customer = new Customer("Customer", 1);
 
-        customer.checkOutBook(lib, book);
+        lib.checkOutMedia(customer, book);
 
         assertEquals(true, lib.returnMedia(customer, book));
     }
@@ -142,7 +142,7 @@ public class LibraryTest {
 
         Book book = new Book("Some book", 1);
 
-        customer.checkOutBook(lib, book);
+        lib.checkOutMedia(customer, book);
 
         assertEquals(false, lib.returnMedia(customer, book));
     }
