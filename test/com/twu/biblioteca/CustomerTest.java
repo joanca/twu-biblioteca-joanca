@@ -18,14 +18,13 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_true() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
         Book book = new Book("Some book", 1);
 
-        bookList.put(0, book);
-
-        Library lib = new Library(bookList);
+        Library lib = new Library(new Librarian("Librarian", 1));
+        lib.addMedia(book);
 
         Customer customer = new Customer("Customer", 1);
+        lib.newCustomer(customer);
 
         lib.checkOutMedia(customer, book);
 
@@ -41,7 +40,7 @@ public class CustomerTest {
 
     @Test
     public void has_movies_should_return_true() {
-        Library lib = new Library();
+        Library lib = new Library(new Librarian("Librarian", 1));
         Media movie = new Movie("Some movie", 1);
         lib.addMedia(movie);
 
@@ -63,10 +62,11 @@ public class CustomerTest {
     public void has_book_should_return_true() {
         Customer customer = new Customer("Customer", 1);
         Book book = new Book("Some book", 1);
-        Map<Integer, Media> booksList = new HashMap<Integer, Media>();
-        booksList.put(0, book);
 
-        Library lib = new Library(booksList);
+        Library lib = new Library(new Librarian("Librarian", 1));
+        lib.newCustomer(customer);
+
+        lib.addMedia(book);
 
         lib.checkOutMedia(customer, book);
 

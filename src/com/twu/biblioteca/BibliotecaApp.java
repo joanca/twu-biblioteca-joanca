@@ -23,6 +23,8 @@ public class BibliotecaApp {
 
         for(int i = 1; i <= size; i++) {
             Movie movie = new Movie("Movie " + i, i);
+            movie.setPublicationYear(i);
+            movie.setDirector("Director " + i);
 
             movies.put(i, movie);
         }
@@ -111,9 +113,11 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        Library lib = new Library(generateBooks(3));
+        Library lib = new Library(generateBooks(3), new Librarian("Librarian", 1));
 
         Customer customer = new Customer("Customer", 1);
+
+        lib.newCustomer(customer);
 
         System.out.println(lib.getWelcomeMessage());
 

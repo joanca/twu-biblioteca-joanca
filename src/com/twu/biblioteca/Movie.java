@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.concurrent.ExecutionException;
-
 public class Movie extends Media {
     private String movieDirector;
     private Rating movieRating;

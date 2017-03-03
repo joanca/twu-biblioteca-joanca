@@ -12,14 +12,14 @@ public class LibraryTest {
 
     @Test
     public void get_welcome_message_should_return_greetings() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.getWelcomeMessage();
         assertEquals("Welcome to Biblioteca!", message);
     }
 
     @Test
     public void succesful_checkout_message_should_return_thank_you() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.succesfulCheckOutMessage();
 
         assertEquals("Thank you! Enjoy the book.", message);
@@ -27,7 +27,7 @@ public class LibraryTest {
 
     @Test
     public void unsuccesful_checkout_message_should_return_not_available() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.unsuccesfulCheckOutMessage();
 
         assertEquals("That book is not available.", message);
@@ -35,7 +35,7 @@ public class LibraryTest {
 
     @Test
     public void succesful_return_message_should_return_thank_you() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.succesfulReturnMessage();
 
         assertEquals("Thank you for returning the book.", message);
@@ -43,7 +43,7 @@ public class LibraryTest {
 
     @Test
     public void unsuccesful_return_message_should_return_not_valid() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.unsuccesfulReturnMessage();
 
         assertEquals("That is not a valid book to return.", message);
@@ -51,7 +51,7 @@ public class LibraryTest {
 
     @Test
     public void select_element_in_menu() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.selectElementInMenuMessage();
 
         assertEquals("Select an element of the menu: ", message);
@@ -59,7 +59,7 @@ public class LibraryTest {
 
     @Test
     public void invalid_option_message() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.invalidOptionMessage();
 
         assertEquals("Select a valid option!", message);
@@ -67,7 +67,7 @@ public class LibraryTest {
 
     @Test
     public void enter_your_choice_message() {
-        Library lib = new Library(new HashMap<Integer, Media>());
+        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.enterYourChoiceMessage();
 
         assertEquals("Enter your choice: ", message);
@@ -77,7 +77,7 @@ public class LibraryTest {
     public void get_books_should_return_map_of_books() {
         Map<Integer, Media> booksList = new HashMap<Integer, Media>();
 
-        Library lib = new Library(booksList);
+        Library lib = new Library(booksList, new Librarian("Librarian", 1));
 
         Map<Integer, Media> books = lib.getBooks();
 
@@ -91,7 +91,7 @@ public class LibraryTest {
 
         bookList.put(0, book);
 
-        Library lib = new Library(bookList);
+        Library lib = new Library(bookList, new Librarian("Librarian", 1));
 
         assertEquals(true, lib.mediaInLibrary(book));
     }
@@ -100,7 +100,7 @@ public class LibraryTest {
     public void book_in_library_should_return_false() {
         Map<Integer, Media> bookList = new HashMap<Integer, Media>();
 
-        Library lib = new Library(bookList);
+        Library lib = new Library(bookList, new Librarian("Librarian", 1));
 
         assertEquals(false, lib.mediaInLibrary(new Book("Some book", 1)));
     }
@@ -108,14 +108,14 @@ public class LibraryTest {
     @Test
     public void has_books_should_return_false() {
         Map<Integer, Media> booksList = new HashMap<Integer, Media>();
-        Library lib = new Library(booksList);
+        Library lib = new Library(booksList, new Librarian("Librarian", 1));
 
         assertEquals(false, lib.hasBooks());
     }
 
     @Test
     public void has_books_should_return_true() {
-        Library lib = new Library();
+        Library lib = new Library(new Librarian("Librarian", 1));
 
         lib.addMedia(new Book("Some book", 1));
 
@@ -124,19 +124,20 @@ public class LibraryTest {
 
     @Test
     public void return_book_to_library_should_return_true() {
-        Library lib = new Library();
+        Library lib = new Library(new Librarian("Librarian", 1));
         Book book = new Book("Some book", 1);
         lib.addMedia(book);
 
         Customer customer = new Customer("Customer", 1);
 
+        lib.newCustomer(customer);
         lib.checkOutMedia(customer, book);
 
         assertEquals(true, lib.returnMedia(customer, book));
     }
     @Test
     public void return_book_to_library_should_return_false() {
-        Library lib = new Library();
+        Library lib = new Library(new Librarian("Librarian", 1));
 
         Customer customer = new Customer("Customer", 1);
 
@@ -149,12 +150,35 @@ public class LibraryTest {
 
     @Test
     public void check_out_media_should_return_true() {
-        Library lib = new Library();
+        Library lib = new Library(new Librarian("Librarian", 1));
         Media media = new Book("Some book", 1);
         Customer customer = new Customer("Customer", 1);
 
         lib.addMedia(media);
+        lib.newCustomer(customer);
 
         assertEquals(true, lib.checkOutMedia(customer, media));
+    }
+
+    @Test
+    public void is_customer_should_return_true() {
+        Librarian librarian = new Librarian("Librarian" ,1);
+        Library lib = new Library(librarian);
+
+        Customer customer = new Customer("Some customer", 1);
+
+        lib.newCustomer(customer);
+
+        assertTrue(lib.isCustomer(customer));
+    }
+
+    @Test
+    public void is_customer_should_return_false() {
+        Librarian librarian = new Librarian("l", 1);
+        Library lib = new Library(librarian);
+
+        Customer customer = new Customer("Some customer", 1);
+
+        assertFalse(lib.isCustomer(customer));
     }
 }

@@ -4,15 +4,25 @@ import java.util.*;
 
 public class Library {
     private Map<Integer, Media> booksList, moviesList;
+    private Map<Integer, User> customersList;
+    Librarian librarian;
 
-    Library() {
+    Library(Librarian librarian) {
+        this.librarian = librarian;
         this.booksList = new HashMap<Integer, Media>();
         this.moviesList = new HashMap<Integer, Media>();
+        this.customersList = new HashMap<Integer, User>();
+
+        this.librarian.setLibrary(this);
     }
 
-    Library(Map<Integer, Media> booksList) {
+    Library(Map<Integer, Media> booksList, Librarian librarian) {
+        this.librarian = librarian;
         this.booksList = booksList;
         this.moviesList = new HashMap<Integer, Media>();
+        this.customersList = new HashMap<Integer, User>();
+
+        this.librarian.setLibrary(this);
     }
 
     public void addMedia(Media media) {
@@ -26,6 +36,10 @@ public class Library {
 
     private void addMovie(Media movie) {
         this.moviesList.put(movie.getID(), movie);
+    }
+
+    public void newCustomer(Customer customer) {
+        this.customersList.put(customer.getUserID(), customer);
     }
 
     public Map<Integer, Media> getBooks(){
@@ -72,13 +86,17 @@ public class Library {
         return "Select a valid option!";
     }
 
+    public boolean isCustomer(Customer customer) {
+        return this.customersList.containsValue(customer);
+    }
+
     public boolean mediaInLibrary(Media media) {
         return booksList.containsValue(media) || moviesList.containsValue(media);
     }
 
     public boolean checkOutMedia(Customer customer, Media media) {
         String message;
-        if(this.mediaInLibrary(media) && !media.isCheckedOut()) {
+        if(librarian.customerCanCheckOut(customer, media)) {
             message = this.succesfulCheckOutMessage();
 
             customer.addMedia(media);
@@ -96,7 +114,7 @@ public class Library {
     public boolean returnMedia(Customer customer, Media media) {
         String message;
 
-        if(this.mediaInLibrary(media) && customer.hasCheckedOut(media) && media.isCheckedOut()) {
+        if(this.mediaInLibrary(media) && librarian.customerHasCheckedOut(customer, media)) {
             message = this.succesfulReturnMessage();
 
             media.changeStatus();
