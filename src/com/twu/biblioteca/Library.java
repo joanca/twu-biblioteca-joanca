@@ -96,7 +96,7 @@ public class Library {
 
     public boolean checkOutMedia(Customer customer, Media media) {
         String message;
-        if(librarian.customerCanCheckOut(customer, media)) {
+        if(this.librarian.customerCanCheckOut(customer, media)) {
             message = this.succesfulCheckOutMessage();
 
             customer.addMedia(media);
@@ -114,7 +114,7 @@ public class Library {
     public boolean returnMedia(Customer customer, Media media) {
         String message;
 
-        if(this.mediaInLibrary(media) && librarian.customerHasCheckedOut(customer, media)) {
+        if(this.librarian.customerHasCheckedOut(customer, media)) {
             message = this.succesfulReturnMessage();
 
             media.changeStatus();

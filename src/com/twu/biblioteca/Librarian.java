@@ -18,6 +18,8 @@ public class Librarian extends User {
     }
 
     public boolean customerHasCheckedOut(Customer customer, Media media) {
-        return media.isCheckedOut() && customer.hasCheckedOut(media);
+        return this.library.mediaInLibrary(media)
+                && media.isCheckedOut()
+                && customer.hasCheckedOut(media);
     }
 }

@@ -96,4 +96,48 @@ public class CustomerTest {
 
         assertEquals(movies, customer.getMovies());
     }
+
+    @Test
+    public void has_books_should_return_false_after_pop_media() {
+        Customer customer = new Customer("Customer", 1);
+        Media book = new Book("Some book", 1);
+
+        customer.addMedia(book);
+
+        customer.popMedia(book);
+
+        assertFalse(customer.hasBooks());
+    }
+
+    @Test
+    public void has_movies_should_return_false_after_pop_media() {
+        Customer customer = new Customer("Customer", 1);
+        Media movie = new Movie("Some movie", 1);
+
+        customer.addMedia(movie);
+
+        customer.popMedia(movie);
+
+        assertFalse(customer.hasMovies());
+    }
+
+    @Test
+    public void has_movies_should_return_false_after_add_book() {
+        Customer customer = new Customer("Customer", 1);
+        Media book = new Book("Some book", 1);
+
+        customer.addMedia(book);
+
+        assertFalse(customer.hasMovies());
+    }
+
+    @Test
+    public void has_books_should_return_false_after_add_movie() {
+        Customer customer = new Customer("Customer", 1);
+        Media movie = new Movie("Some movie", 1);
+
+        customer.addMedia(movie);
+
+        assertFalse(customer.hasBooks());
+    }
 }
