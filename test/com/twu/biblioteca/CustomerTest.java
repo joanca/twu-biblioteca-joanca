@@ -34,13 +34,29 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_false() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
-
-        Library lib = new Library(bookList);
         Customer customer = new Customer("Customer", 1);
 
-
         assertEquals(false, customer.hasBooks());
+    }
+
+    @Test
+    public void has_movies_should_return_true() {
+        Library lib = new Library();
+        Media movie = new Movie("Some movie", 1);
+        lib.addMedia(movie);
+
+        Customer customer = new Customer("Customer", 1);
+
+        customer.addMedia(movie);
+
+        assertTrue(customer.hasMovies());
+    }
+
+    @Test
+    public void has_movies_should_return_false() {
+        Customer customer = new Customer("Customer", 1);
+
+        assertFalse(customer.hasMovies());
     }
 
     @Test
@@ -71,5 +87,13 @@ public class CustomerTest {
         Map<Integer, Book> books = new HashMap<Integer, Book>();
 
         assertEquals(books, customer.getBooks());
+    }
+
+    @Test
+    public void get_movies_should_return_map_of_movies() {
+        Customer customer = new Customer("Customer", 1);
+        Map<Integer, Movie> movies = new HashMap<Integer, Movie>();
+
+        assertEquals(movies, customer.getMovies());
     }
 }

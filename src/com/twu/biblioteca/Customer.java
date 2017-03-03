@@ -2,32 +2,33 @@ package com.twu.biblioteca;
 
 import java.util.*;
 
-public class Customer {
-    private String name;
+public class Customer extends User {
     private Map<Integer, Media> checkedOutBooks, checkedOutMovies;
-    private int customerID;
 
     Customer(String name, int ID) {
-        this.name = name;
+        super(name, ID);
         this.checkedOutBooks = new HashMap<Integer, Media>();
         this.checkedOutMovies = new HashMap<Integer, Media>();
-        this.customerID = ID;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public boolean hasBooks() {
         return this.checkedOutBooks.size() > 0;
     }
 
-    public boolean hasCheckedOut(Media book) {
-        return this.checkedOutBooks.containsValue(book);
+    public boolean hasMovies() {
+        return this.checkedOutMovies.size() > 0;
+    }
+
+    public boolean hasCheckedOut(Media media) {
+        return this.checkedOutBooks.containsValue(media) || this.checkedOutMovies.containsValue(media);
     }
 
     public Map<Integer, Media> getBooks() {
         return this.checkedOutBooks;
+    }
+
+    public Map<Integer, Media> getMovies() {
+        return this.checkedOutMovies;
     }
 
     public void addMedia(Media media) {
