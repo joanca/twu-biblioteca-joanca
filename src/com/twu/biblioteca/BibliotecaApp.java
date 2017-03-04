@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.models.*;
+import com.twu.biblioteca.views.CustomerView;
 import com.twu.biblioteca.views.LibraryView;
 
 import java.util.*;
@@ -89,8 +90,11 @@ public class BibliotecaApp {
 
     private static void selectedReturnBooks(Library lib, Customer customer) {
         Scanner stdin = new Scanner(System.in);
+        CustomerView customerView = new CustomerView(customer);
+
         while (customer.hasBooks()) {
-            customer.printBookList();
+            customerView.printBookList();
+
             String choice = stdin.next();
 
             if (choice.equals("q")) {

@@ -35,14 +35,7 @@ public class MovieTest {
 
         Rating rating = movie.getRating();
 
-        assertEquals("1", rating.getValue());
+        assertEquals(1, rating.getValue());
     }
 
-    @Test
-    public void get_rating_should_return_unrated() {
-        Movie movie = new Movie("Some movie", 1, 1, "some person");
-        Rating rating = movie.getRating();
-
-        assertEquals("unrated", rating.getValue());
-    }
 }

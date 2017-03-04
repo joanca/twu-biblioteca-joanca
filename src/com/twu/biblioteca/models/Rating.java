@@ -1,7 +1,8 @@
 package com.twu.biblioteca.models;
 
 public class Rating {
-    private String ratingValue = "unrated";
+    private int ratingValue;
+    private boolean isRated = false;
 
     public Rating() {}
 
@@ -9,10 +10,15 @@ public class Rating {
         if(value > 10 || value < 0)
             throw new Exception("Valor fuera de rango.");
 
-        this.ratingValue = String.valueOf(value);
+        this.isRated = true;
+        this.ratingValue = value;
     }
 
-    public String getValue() {
+    public int getValue() {
         return ratingValue;
+    }
+
+    public boolean isRated() {
+        return isRated;
     }
 }

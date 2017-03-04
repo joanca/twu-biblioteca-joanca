@@ -57,18 +57,5 @@ public class Customer extends User {
         this.checkedOutMovies.remove(movie.getID());
     }
 
-    public void printBookList() {
-        System.out.println();
 
-        System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
-
-        for(Map.Entry<Integer, Media> entry: this.checkedOutBooks.entrySet()) {
-            Book book = (Book) entry.getValue();
-
-            System.out.format("%2d%20s%16s%10d\n", book.getID(), book.getTitle(), book.getAuthor(), book.getPublicationYear());
-        }
-
-        System.out.println();
-        System.out.print("Which book do you want to return? (ID) (q to main menu) ");
-    }
 }
