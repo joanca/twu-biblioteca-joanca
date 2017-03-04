@@ -1,13 +1,13 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 import java.util.*;
 
 public class Library {
     private Map<Integer, Media> booksList, moviesList;
     private Map<Integer, User> customersList;
-    Librarian librarian;
+    private Librarian librarian;
 
-    Library(Librarian librarian) {
+    public Library(Librarian librarian) {
         this.librarian = librarian;
         this.booksList = new HashMap<Integer, Media>();
         this.moviesList = new HashMap<Integer, Media>();
@@ -16,7 +16,7 @@ public class Library {
         this.librarian.setLibrary(this);
     }
 
-    Library(Map<Integer, Media> booksList, Librarian librarian) {
+    public Library(Map<Integer, Media> booksList, Librarian librarian) {
         this.librarian = librarian;
         this.booksList = booksList;
         this.moviesList = new HashMap<Integer, Media>();
@@ -95,56 +95,24 @@ public class Library {
     }
 
     public boolean checkOutMedia(Customer customer, Media media) {
-        String message;
         if(this.librarian.customerCanCheckOut(customer, media)) {
-            message = this.succesfulCheckOutMessage();
-
+            media.changeStatus();
             customer.addMedia(media);
 
-            System.out.println(message);
             return true;
         }
-        message = this.unsuccesfulCheckOutMessage();
-
-        System.out.println(message);
 
         return false;
     }
 
     public boolean returnMedia(Customer customer, Media media) {
-        String message;
-
         if(this.librarian.customerHasCheckedOut(customer, media)) {
-            message = this.succesfulReturnMessage();
-
             media.changeStatus();
-
             customer.popMedia(media);
-
-            System.out.println(message);
 
             return true;
         }
-        message = this.unsuccesfulReturnMessage();
-
-        System.out.println(message);
 
         return false;
-    }
-
-    public void printBookList() {
-        System.out.println();
-
-        System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
-
-        for(Media media: this.booksList.values()) {
-            Book book = (Book) media;
-            if(!book.isCheckedOut()) {
-                System.out.format("%2d%20s%16s%10d\n", book.getID(), book.getTitle(), book.getAuthor(), book.getPublicationYear());
-            }
-        }
-
-        System.out.println();
-        System.out.print("Which book do you want to check out? (ID) (q to main menu) ");
     }
 }

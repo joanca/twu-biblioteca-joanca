@@ -1,9 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 public class Librarian extends User {
     private Library library;
 
-    Librarian(String name, int ID) {
+    public Librarian(String name, int ID) {
         super(name, ID);
     }
 

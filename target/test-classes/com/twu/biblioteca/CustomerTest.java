@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.models.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_true() {
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
 
         Library lib = new Library(new Librarian("Librarian", 1));
         lib.addMedia(book);
@@ -42,7 +41,7 @@ public class CustomerTest {
     @Test
     public void has_movies_should_return_true() {
         Library lib = new Library(new Librarian("Librarian", 1));
-        Media movie = new Movie("Some movie", 1, 1, "some person");
+        Media movie = new Movie("Some movie", 1);
         lib.addMedia(movie);
 
         Customer customer = new Customer("Customer", 1);
@@ -62,7 +61,7 @@ public class CustomerTest {
     @Test
     public void has_book_should_return_true() {
         Customer customer = new Customer("Customer", 1);
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
 
         Library lib = new Library(new Librarian("Librarian", 1));
         lib.newCustomer(customer);
@@ -77,7 +76,7 @@ public class CustomerTest {
     @Test
     public void has_book_should_return_false() {
         Customer customer = new Customer("Customer", 1);
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
 
         assertEquals(false, customer.hasCheckedOut(book));
     }
@@ -101,7 +100,7 @@ public class CustomerTest {
     @Test
     public void has_books_should_return_false_after_pop_media() {
         Customer customer = new Customer("Customer", 1);
-        Media book = new Book("Some book", 1, 1, "some person");
+        Media book = new Book("Some book", 1);
 
         customer.addMedia(book);
 
@@ -113,7 +112,7 @@ public class CustomerTest {
     @Test
     public void has_movies_should_return_false_after_pop_media() {
         Customer customer = new Customer("Customer", 1);
-        Media movie = new Movie("Some movie", 1, 1, "some person");
+        Media movie = new Movie("Some movie", 1);
 
         customer.addMedia(movie);
 
@@ -125,7 +124,7 @@ public class CustomerTest {
     @Test
     public void has_movies_should_return_false_after_add_book() {
         Customer customer = new Customer("Customer", 1);
-        Media book = new Book("Some book", 1, 1, "some person");
+        Media book = new Book("Some book", 1);
 
         customer.addMedia(book);
 
@@ -135,7 +134,7 @@ public class CustomerTest {
     @Test
     public void has_books_should_return_false_after_add_movie() {
         Customer customer = new Customer("Customer", 1);
-        Media movie = new Movie("Some movie", 1, 1, "some person");
+        Media movie = new Movie("Some movie", 1);
 
         customer.addMedia(movie);
 

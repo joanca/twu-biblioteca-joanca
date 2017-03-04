@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.models.*;
+import com.twu.biblioteca.views.LibraryView;
+
 import java.util.*;
 
 public class BibliotecaApp {
@@ -8,9 +11,7 @@ public class BibliotecaApp {
         Map<Integer, Media> books = new HashMap<Integer, Media>(size);
 
         for(int i = 1; i <= size; i++) {
-            Book book = new Book("Book " + i, i);
-            book.setPublicationYear(i);
-            book.setAuthor("Author" + (i));
+            Book book = new Book("Book " + i, i, 1, "some person");
 
             books.put(i, book);
         }
@@ -22,14 +23,22 @@ public class BibliotecaApp {
         Map<Integer, Media> movies = new HashMap<Integer, Media>(size);
 
         for(int i = 1; i <= size; i++) {
-            Movie movie = new Movie("Movie " + i, i);
-            movie.setPublicationYear(i);
-            movie.setDirector("Director " + i);
+            Movie movie = new Movie("Movie " + i, i, 1, "some person");
 
             movies.put(i, movie);
         }
 
         return movies;
+    }
+
+    private static void addMediaToLibrary(Library lib) {
+        for(Media book: generateBooks(3).values()) {
+            lib.addMedia(book);
+        }
+
+        for(Media movie: generateMovies(3).values()) {
+            lib.addMedia(movie);
+        }
     }
 
     private static void printMenuElements(Customer customer) {
@@ -62,18 +71,19 @@ public class BibliotecaApp {
 
     private static void selectedListBooks(Library lib, Customer customer) {
         Scanner stdin = new Scanner(System.in);
-        boolean checkOut = false;
+        LibraryView libraryView = new LibraryView(lib);
 
-        while (!checkOut) {
-            lib.printBookList();
+        while (true) {
+            libraryView.printBookList();
+
             String choice = stdin.next();
-
             if (choice.equals("q")) {
                 break;
             }
 
             int bookId = Integer.parseInt(choice);
-            checkOut = lib.checkOutMedia(customer, lib.getBook(bookId));
+
+            libraryView.printCheckOutMedia(customer, lib.getBook(bookId));
         }
     }
 
@@ -88,7 +98,9 @@ public class BibliotecaApp {
             }
 
             int bookId = Integer.parseInt(choice);
-            lib.returnMedia(customer, lib.getBook(bookId));
+
+            LibraryView libraryView = new LibraryView(lib);
+            libraryView.printReturnMedia(customer, lib.getBook(bookId));
         }
     }
 
@@ -113,7 +125,9 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        Library lib = new Library(generateBooks(3), new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("Librarian", 1));
+
+        addMediaToLibrary(lib);
 
         Customer customer = new Customer("Customer", 1);
 

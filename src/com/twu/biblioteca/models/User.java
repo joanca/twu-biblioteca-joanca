@@ -1,10 +1,10 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 public class User {
     private String name;
     private int userID;
 
-    User(String name, int ID) {
+    public User(String name, int ID) {
         this.name = name;
         this.userID = ID;
     }

@@ -1,9 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.models.Customer;
-import com.twu.biblioteca.models.Librarian;
-import com.twu.biblioteca.models.Library;
-import com.twu.biblioteca.models.Media;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,7 +9,7 @@ public class LibrarianTest {
     public void consumer_has_checked_out_should_return_false() {
         Customer customer = new Customer("Customer", 1);
         Librarian librarian = new Librarian("Librarian", 1);
-        Media media = new Media("Some media", 1, 1, "some person");
+        Media media = new Media("Some media", 1);
 
         Library lib = new Library(librarian);
         lib.addMedia(media);
@@ -27,7 +23,7 @@ public class LibrarianTest {
         Librarian librarian = new Librarian("Librarian", 1);
 
         Library lib = new Library(librarian);
-        Media media = new Media("Some media", 1, 1, "some person");
+        Media media = new Media("Some media", 1);
 
         lib.addMedia(media);
         lib.newCustomer(customer);
@@ -45,7 +41,7 @@ public class LibrarianTest {
         Library lib = new Library(librarian);
         lib.newCustomer(customer);
 
-        Media media = new Media("Some media",1, 1, "some person");
+        Media media = new Media("Some media",1);
 
         lib.addMedia(media);
 

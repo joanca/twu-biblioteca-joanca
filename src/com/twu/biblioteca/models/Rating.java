@@ -1,9 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 public class Rating {
     private String ratingValue = "unrated";
 
-    Rating() {}
+    public Rating() {}
 
     public void setValue(int value) throws Exception {
         if(value > 10 || value < 0)

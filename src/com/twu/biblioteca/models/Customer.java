@@ -1,11 +1,11 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 import java.util.*;
 
 public class Customer extends User {
     private Map<Integer, Media> checkedOutBooks, checkedOutMovies;
 
-    Customer(String name, int ID) {
+    public Customer(String name, int ID) {
         super(name, ID);
         this.checkedOutBooks = new HashMap<Integer, Media>();
         this.checkedOutMovies = new HashMap<Integer, Media>();
@@ -32,7 +32,6 @@ public class Customer extends User {
     }
 
     public void addMedia(Media media) {
-        media.checkOut();
         if(media instanceof Book) this.addBook(media);
         else this.addMovie(media);
     }
@@ -46,7 +45,6 @@ public class Customer extends User {
     }
 
     public void popMedia(Media media) {
-        media.returnMedia();
         if(media instanceof Book) this.popBook(media);
         else this.popMovie(media);
     }

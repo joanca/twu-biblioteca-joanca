@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.models.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -88,7 +87,7 @@ public class LibraryTest {
     @Test
     public void book_in_library_should_return_true() {
         Map<Integer, Media> bookList = new HashMap<Integer, Media>();
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
 
         bookList.put(0, book);
 
@@ -103,7 +102,7 @@ public class LibraryTest {
 
         Library lib = new Library(bookList, new Librarian("Librarian", 1));
 
-        assertEquals(false, lib.mediaInLibrary(new Book("Some book", 1, 1, "some person")));
+        assertEquals(false, lib.mediaInLibrary(new Book("Some book", 1)));
     }
 
     @Test
@@ -118,7 +117,7 @@ public class LibraryTest {
     public void has_books_should_return_true() {
         Library lib = new Library(new Librarian("Librarian", 1));
 
-        lib.addMedia(new Book("Some book", 1, 1, "some person"));
+        lib.addMedia(new Book("Some book", 1));
 
         assertEquals(true, lib.hasBooks());
     }
@@ -126,7 +125,7 @@ public class LibraryTest {
     @Test
     public void return_book_to_library_should_return_true() {
         Library lib = new Library(new Librarian("Librarian", 1));
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
         lib.addMedia(book);
 
         Customer customer = new Customer("Customer", 1);
@@ -142,7 +141,7 @@ public class LibraryTest {
 
         Customer customer = new Customer("Customer", 1);
 
-        Book book = new Book("Some book", 1, 1, "some person");
+        Book book = new Book("Some book", 1);
 
         lib.checkOutMedia(customer, book);
 
@@ -152,7 +151,7 @@ public class LibraryTest {
     @Test
     public void check_out_media_should_return_true() {
         Library lib = new Library(new Librarian("Librarian", 1));
-        Media media = new Book("Some book", 1, 1, "some person");
+        Media media = new Book("Some book", 1);
         Customer customer = new Customer("Customer", 1);
 
         lib.addMedia(media);

@@ -1,16 +1,11 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 public class Movie extends Media {
-    private String movieDirector;
     private Rating movieRating;
 
-    Movie(String movieTitle, int ID) {
-        super(movieTitle, ID);
+    public Movie(String movieTitle, int ID, int publicationYear, String director) {
+        super(movieTitle, ID, publicationYear, director);
         movieRating = new Rating();
-    }
-
-    public void setDirector(String director) {
-        this.movieDirector = director;
     }
 
     public void setRating(int rate) throws Exception {
@@ -18,7 +13,7 @@ public class Movie extends Media {
     }
 
     public String getDirector() {
-        return this.movieDirector;
+        return this.getAuthor();
     }
 
     public Rating getRating() {
