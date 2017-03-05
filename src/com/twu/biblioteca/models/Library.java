@@ -16,15 +16,6 @@ public class Library {
         this.librarian.setLibrary(this);
     }
 
-    public Library(Map<Integer, Media> booksList, Librarian librarian) {
-        this.librarian = librarian;
-        this.booksList = booksList;
-        this.moviesList = new HashMap<Integer, Media>();
-        this.customersList = new HashMap<Integer, User>();
-
-        this.librarian.setLibrary(this);
-    }
-
     public void addMedia(Media media) {
         if(media instanceof Book) this.addBook(media);
         else this.addMovie(media);

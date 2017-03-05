@@ -14,38 +14,34 @@ public class LibraryTest {
     public void get_books_should_return_map_of_books() {
         Map<Integer, Media> booksList = new HashMap<Integer, Media>();
 
-        Library lib = new Library(booksList, new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("Librarian", 1));
 
         Map<Integer, Media> books = lib.getBooks();
 
-        assertSame(books, booksList);
+        assertEquals(books, booksList);
     }
 
     @Test
     public void book_in_library_should_return_true() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
         Book book = new Book("Some book", 1, 1, "some person");
 
-        bookList.put(0, book);
+        Library lib = new Library(new Librarian("Librarian", 1));
 
-        Library lib = new Library(bookList, new Librarian("Librarian", 1));
+        lib.addMedia(book);
 
         assertEquals(true, lib.mediaInLibrary(book));
     }
 
     @Test
     public void book_in_library_should_return_false() {
-        Map<Integer, Media> bookList = new HashMap<Integer, Media>();
-
-        Library lib = new Library(bookList, new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("Librarian", 1));
 
         assertEquals(false, lib.mediaInLibrary(new Book("Some book", 1, 1, "some person")));
     }
 
     @Test
     public void has_books_should_return_false() {
-        Map<Integer, Media> booksList = new HashMap<Integer, Media>();
-        Library lib = new Library(booksList, new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("Librarian", 1));
 
         assertEquals(false, lib.hasBooks());
     }
