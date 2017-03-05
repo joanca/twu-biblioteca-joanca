@@ -2,8 +2,6 @@ package com.twu.biblioteca.views;
 
 import com.twu.biblioteca.models.*;
 
-import java.util.Map;
-
 public class CustomerView {
     private Customer customer;
 
@@ -16,8 +14,8 @@ public class CustomerView {
 
         System.out.format("%2s%20s%16s%20s\n", "ID", "Book title", "Author", "Year Published");
 
-        for(Map.Entry<Integer, Media> entry: this.customer.getBooks().entrySet()) {
-            Book book = (Book) entry.getValue();
+        for(Media media: this.customer.getBooks().values()) {
+            Book book = (Book) media;
 
             System.out.format("%2d%20s%16s%10d\n", book.getID(), book.getTitle(), book.getAuthor(), book.getPublicationYear());
         }
@@ -28,17 +26,16 @@ public class CustomerView {
 
     public void printMovieList() {
         System.out.println();
-
         System.out.format("%2s%20s%16s%20s%10s\n", "ID", "Book title", "Director", "Year Published", "Rating");
 
-        for(Map.Entry<Integer, Media> entry: this.customer.getMovies().entrySet()) {
-            Movie movie = (Movie) entry.getValue();
+        for(Media media: this.customer.getBooks().values()) {
+            Movie movie = (Movie) media;
             Rating rating = movie.getRating();
 
             System.out.format("%2d%20s%16s%10d%5d\n", movie.getID(), movie.getTitle(), movie.getAuthor(), movie.getPublicationYear(), rating.getValue());
         }
 
         System.out.println();
-        System.out.print("Which movie do you want to return? (ID) (q to main menu) ");
+        System.out.print("Which book do you want to check out? (ID) (q to main menu) ");
     }
 }

@@ -19,6 +19,10 @@ public class Customer extends User {
         return this.checkedOutMovies.size() > 0;
     }
 
+    public boolean hasAnyMedia() {
+        return this.hasBooks() || this.hasMovies();
+    }
+
     public boolean hasCheckedOut(Media media) {
         return this.checkedOutBooks.containsValue(media) || this.checkedOutMovies.containsValue(media);
     }
@@ -56,6 +60,5 @@ public class Customer extends User {
     private void popMovie(Media movie) {
         this.checkedOutMovies.remove(movie.getID());
     }
-
 
 }

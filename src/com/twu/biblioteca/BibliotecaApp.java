@@ -43,14 +43,15 @@ public class BibliotecaApp {
     }
 
     private static void printMenuElements(Customer customer) {
-        String[] elements = new String[3];
+        String[] elements = new String[4];
 
         elements[0] = "[a] List Books";
-        elements[1] = "[b] Return Books";
-        elements[2] = "[q] Quit";
+        elements[1] = "[b] List Movies";
+        elements[2] = "[r] Return Media";
+        elements[3] = "[q] Quit";
 
         for(int i = 0; i < elements.length; i++) {
-            if(!customer.hasBooks() && (i == 1)) continue;
+            if(!customer.hasAnyMedia() && (i == 1)) continue;
             System.out.println(elements[i]);
         }
     }
@@ -75,7 +76,7 @@ public class BibliotecaApp {
         LibraryView libraryView = new LibraryView(lib);
 
         while (true) {
-            libraryView.printBookList();
+            libraryView.printAvailableBooks();
 
             String choice = stdin.next();
             if (choice.equals("q")) {

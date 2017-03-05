@@ -46,6 +46,10 @@ public class Library {
         return this.booksList;
     }
 
+    public Map<Integer, Media> getMovies() {
+        return this.moviesList;
+    }
+
     public Media getBook(int bookId) {
         return this.booksList.get(bookId);
     }
@@ -56,22 +60,6 @@ public class Library {
 
     public String getWelcomeMessage() {
         return "Welcome to Biblioteca!";
-    }
-
-    public String succesfulCheckOutMessage() {
-        return "Thank you! Enjoy the book.";
-    }
-
-    public String unsuccesfulCheckOutMessage() {
-        return "That book is not available.";
-    }
-
-    public String succesfulReturnMessage() {
-        return "Thank you for returning the book.";
-    }
-
-    public String unsuccesfulReturnMessage() {
-        return "That is not a valid book to return.";
     }
 
     public String selectElementInMenuMessage() {

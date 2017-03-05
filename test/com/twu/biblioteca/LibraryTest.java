@@ -19,38 +19,6 @@ public class LibraryTest {
     }
 
     @Test
-    public void succesful_checkout_message_should_return_thank_you() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.succesfulCheckOutMessage();
-
-        assertEquals("Thank you! Enjoy the book.", message);
-    }
-
-    @Test
-    public void unsuccesful_checkout_message_should_return_not_available() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.unsuccesfulCheckOutMessage();
-
-        assertEquals("That book is not available.", message);
-    }
-
-    @Test
-    public void succesful_return_message_should_return_thank_you() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.succesfulReturnMessage();
-
-        assertEquals("Thank you for returning the book.", message);
-    }
-
-    @Test
-    public void unsuccesful_return_message_should_return_not_valid() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.unsuccesfulReturnMessage();
-
-        assertEquals("That is not a valid book to return.", message);
-    }
-
-    @Test
     public void select_element_in_menu() {
         Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.selectElementInMenuMessage();
