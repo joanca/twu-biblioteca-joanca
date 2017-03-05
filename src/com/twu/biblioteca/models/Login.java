@@ -2,8 +2,6 @@ package com.twu.biblioteca.models;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Login {
     private User loggedInUser;
