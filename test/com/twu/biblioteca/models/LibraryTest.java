@@ -1,7 +1,6 @@
 package com.twu.biblioteca.models;
 
 
-import com.twu.biblioteca.models.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class LibraryTest {
     public void get_books_should_return_map_of_books() {
         Map<Integer, Media> booksList = new HashMap<Integer, Media>();
 
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
         Map<Integer, Media> books = lib.getBooks();
 
@@ -25,7 +24,7 @@ public class LibraryTest {
     public void book_in_library_should_return_true() {
         Book book = new Book("Some book", 1, 1, "some person");
 
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
         lib.addMedia(book);
 
@@ -34,21 +33,21 @@ public class LibraryTest {
 
     @Test
     public void book_in_library_should_return_false() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
         assertEquals(false, lib.mediaInLibrary(new Book("Some book", 1, 1, "some person")));
     }
 
     @Test
     public void has_books_should_return_false() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
         assertEquals(false, lib.hasBooks());
     }
 
     @Test
     public void has_books_should_return_true() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
         lib.addMedia(new Book("Some book", 1, 1, "some person"));
 
@@ -57,11 +56,11 @@ public class LibraryTest {
 
     @Test
     public void return_book_to_library_should_return_true() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         Book book = new Book("Some book", 1, 1, "some person");
         lib.addMedia(book);
 
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         lib.newCustomer(customer);
         lib.checkOutMedia(customer, book);
@@ -70,9 +69,9 @@ public class LibraryTest {
     }
     @Test
     public void return_book_to_library_should_return_false() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
 
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         Book book = new Book("Some book", 1, 1, "some person");
 
@@ -83,9 +82,9 @@ public class LibraryTest {
 
     @Test
     public void check_out_media_should_return_true() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         Media media = new Book("Some book", 1, 1, "some person");
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         lib.addMedia(media);
         lib.newCustomer(customer);
@@ -95,10 +94,10 @@ public class LibraryTest {
 
     @Test
     public void is_customer_should_return_true() {
-        Librarian librarian = new Librarian("Librarian" ,1);
+        Librarian librarian = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
         Library lib = new Library(librarian);
 
-        Customer customer = new Customer("Some customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         lib.newCustomer(customer);
 
@@ -107,10 +106,10 @@ public class LibraryTest {
 
     @Test
     public void is_customer_should_return_false() {
-        Librarian librarian = new Librarian("l", 1);
+        Librarian librarian = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
         Library lib = new Library(librarian);
 
-        Customer customer = new Customer("Some customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         assertFalse(lib.isCustomer(customer));
     }

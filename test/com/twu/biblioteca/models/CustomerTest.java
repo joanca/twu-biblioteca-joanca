@@ -1,6 +1,5 @@
 package com.twu.biblioteca.models;
 
-import com.twu.biblioteca.models.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -12,7 +11,7 @@ public class CustomerTest {
 
     @Test
     public void get_name_of_customer() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         assertEquals("Customer", customer.getName());
     }
@@ -21,10 +20,10 @@ public class CustomerTest {
     public void has_books_should_return_true() {
         Book book = new Book("Some book", 1, 1, "some person");
 
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         lib.addMedia(book);
 
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         lib.newCustomer(customer);
 
         lib.checkOutMedia(customer, book);
@@ -34,18 +33,18 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_false() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         assertEquals(false, customer.hasBooks());
     }
 
     @Test
     public void has_movies_should_return_true() {
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         Media movie = new Movie("Some movie", 1, 1, "some person");
         lib.addMedia(movie);
 
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         customer.addMedia(movie);
 
@@ -54,17 +53,17 @@ public class CustomerTest {
 
     @Test
     public void has_movies_should_return_false() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         assertFalse(customer.hasMovies());
     }
 
     @Test
     public void has_book_should_return_true() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Book book = new Book("Some book", 1, 1, "some person");
 
-        Library lib = new Library(new Librarian("Librarian", 1));
+        Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         lib.newCustomer(customer);
 
         lib.addMedia(book);
@@ -76,7 +75,7 @@ public class CustomerTest {
 
     @Test
     public void has_book_should_return_false() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Book book = new Book("Some book", 1, 1, "some person");
 
         assertEquals(false, customer.hasCheckedOut(book));
@@ -84,7 +83,7 @@ public class CustomerTest {
 
     @Test
     public void get_books_should_return_map_of_books() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Map<Integer, Book> books = new HashMap<Integer, Book>();
 
         assertEquals(books, customer.getBooks());
@@ -92,7 +91,7 @@ public class CustomerTest {
 
     @Test
     public void get_movies_should_return_map_of_movies() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Map<Integer, Movie> movies = new HashMap<Integer, Movie>();
 
         assertEquals(movies, customer.getMovies());
@@ -100,7 +99,7 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_false_after_pop_media() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Media book = new Book("Some book", 1, 1, "some person");
 
         customer.addMedia(book);
@@ -112,7 +111,7 @@ public class CustomerTest {
 
     @Test
     public void has_movies_should_return_false_after_pop_media() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Media movie = new Movie("Some movie", 1, 1, "some person");
 
         customer.addMedia(movie);
@@ -124,7 +123,7 @@ public class CustomerTest {
 
     @Test
     public void has_movies_should_return_false_after_add_book() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Media book = new Book("Some book", 1, 1, "some person");
 
         customer.addMedia(book);
@@ -134,7 +133,7 @@ public class CustomerTest {
 
     @Test
     public void has_books_should_return_false_after_add_movie() {
-        Customer customer = new Customer("Customer", 1);
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Media movie = new Movie("Some movie", 1, 1, "some person");
 
         customer.addMedia(movie);

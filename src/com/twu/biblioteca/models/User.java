@@ -1,19 +1,25 @@
 package com.twu.biblioteca.models;
 
 public class User {
-    private String name;
-    private int userID;
+    private String userID, password, name, email, phoneNumber;
 
-    public User(String name, int ID) {
+    public User(String libraryNumber, String password, String name, String email, String phoneNumber) {
+        this.userID = libraryNumber;
         this.name = name;
-        this.userID = ID;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return this.userID;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 }

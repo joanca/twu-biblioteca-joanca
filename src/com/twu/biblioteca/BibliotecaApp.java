@@ -42,8 +42,8 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        Library library = new Library(new Librarian("Librarian", 1));
-        Customer customer = new Customer("Customer", 1);
+        Library library = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
+        Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         addMediaToLibrary(library);
         library.newCustomer(customer);

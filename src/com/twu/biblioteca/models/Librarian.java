@@ -3,8 +3,8 @@ package com.twu.biblioteca.models;
 public class Librarian extends User {
     private Library library;
 
-    public Librarian(String name, int ID) {
-        super(name, ID);
+    public Librarian(String libraryNumber, String password, String name, String email, String phoneNumber) {
+        super(libraryNumber, password, name, email, phoneNumber);
     }
 
     public void setLibrary(Library lib) {

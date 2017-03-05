@@ -4,14 +4,14 @@ import java.util.*;
 
 public class Library {
     private Map<Integer, Media> booksList, moviesList;
-    private Map<Integer, User> customersList;
+    private Map<String, User> customersList;
     private Librarian librarian;
 
     public Library(Librarian librarian) {
         this.librarian = librarian;
         this.booksList = new HashMap<Integer, Media>();
         this.moviesList = new HashMap<Integer, Media>();
-        this.customersList = new HashMap<Integer, User>();
+        this.customersList = new HashMap<String, User>();
 
         this.librarian.setLibrary(this);
     }

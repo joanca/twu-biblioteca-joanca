@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class LoginTest {
     @Test
     public void is_user_should_return_true_after_adding_same_user() {
-        User user = new Customer("Customer", 1);
+        User user = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
         Login login = new Login();
 
         login.addUser(user);
@@ -19,23 +19,23 @@ public class LoginTest {
     public void is_user_should_return_false_with_no_users() {
         Login login = new Login();
 
-        assertFalse(login.isUser(new User("User", 1)));
+        assertFalse(login.isUser(new User("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12312312")));
     }
 
     @Test
     public void is_user_should_return_false_after_adding_other_user() {
         Login login = new Login();
-        User customer = new Customer("Customer", 1);
+        User customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         login.addUser(customer);
 
-        assertFalse(login.isUser(new User("User", 1)));
+        assertFalse(login.isUser(new User("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12312312")));
     }
 
     @Test
     public void is_customer_should_return_false_after_adding_a_librarian() {
         Login login = new Login();
-        User librarian = new Librarian("Librarian", 1);
+        User librarian = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
 
         login.addUser(librarian);
 
@@ -45,7 +45,7 @@ public class LoginTest {
     @Test
     public void is_customer_should_return_true_after_adding_same_customer() {
         Login login = new Login();
-        User user = new Customer("Customer", 1);
+        User user = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         login.addUser(user);
 
@@ -55,7 +55,7 @@ public class LoginTest {
     @Test
     public void is_librarian_should_return_true_after_adding_same_librarian() {
         Login login = new Login();
-        User user = new Librarian("Librarian", 1);
+        User user = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
 
         login.addUser(user);
 
@@ -65,11 +65,11 @@ public class LoginTest {
     @Test
     public void is_librarian_should_return_false_after_adding_different_librarian() {
         Login login = new Login();
-        User user = new Librarian("Librarian", 1);
+        User user = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
 
         login.addUser(user);
 
-        assertFalse(login.isLibrarian(new Librarian("lib", 2)));
+        assertFalse(login.isLibrarian(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678")));
     }
 
     @Test
@@ -91,5 +91,42 @@ public class LoginTest {
         Login login = new Login();
 
         assertFalse(login.isValidLibraryNumber("1233212"));
+    }
+
+    @Test
+    public void log_in_user_should_return_true_after_adding_user() {
+        Login login = new Login();
+        User user = new Customer("123-4567", "password", "Customer", "some@mail.com", "+56 9 12345678");
+
+        login.addUser(user);
+
+        assertEquals(user, login.logInUser("123-4567", "password"));
+    }
+
+    @Test
+    public void log_in_user_should_be_null_with_bad_library_number() {
+        Login login = new Login();
+        User user = new Customer("123-4567", "password", "Customer", "some@mail.com", "+56 9 12345678");
+
+        login.addUser(user);
+
+        assertNull(login.logInUser("123-4557", "password"));
+    }
+
+    @Test
+    public void log_in_user_should_return_null_with_bad_password() {
+        Login login = new Login();
+        User user = new Librarian("123-3456", "password", "Librarian", "some@mail.com", "+56 9 12345678");
+
+        login.addUser(user);
+
+        assertNull(login.logInUser("123-3456", "pasword"));
+    }
+
+    @Test
+    public void log_in_user_should_return_null_when_there_are_no_users() {
+        Login login = new Login();
+
+        assertNull(login.logInUser("123-2345", "pasword"));
     }
 }

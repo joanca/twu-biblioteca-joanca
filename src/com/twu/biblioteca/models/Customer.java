@@ -5,8 +5,8 @@ import java.util.*;
 public class Customer extends User {
     private Map<Integer, Media> checkedOutBooks, checkedOutMovies;
 
-    public Customer(String name, int ID) {
-        super(name, ID);
+    public Customer(String libraryNumber, String password, String name, String email, String phoneNumber) {
+        super(libraryNumber, password, name, email, phoneNumber);
         this.checkedOutBooks = new HashMap<Integer, Media>();
         this.checkedOutMovies = new HashMap<Integer, Media>();
     }
