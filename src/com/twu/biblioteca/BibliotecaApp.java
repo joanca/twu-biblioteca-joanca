@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.models.*;
+import com.twu.biblioteca.views.BibliotecaAppView;
 import com.twu.biblioteca.views.CustomerView;
 import com.twu.biblioteca.views.LibraryView;
 
@@ -59,14 +60,14 @@ public class BibliotecaApp {
     }
 
     private static void printMainMenu(Library lib, Customer customer) {
-        System.out.println();
-        System.out.println(lib.selectElementInMenuMessage());
+        BibliotecaAppView bibliotecaAppView = new BibliotecaAppView();
+        bibliotecaAppView.printSelectElementInMenuMessage();
 
         printMenuElements(customer);
 
         Scanner stdin = new Scanner(System.in);
 
-        System.out.print(lib.enterYourChoiceMessage());
+        bibliotecaAppView.printEnterYourChoiceMessage();
         String selectedElement = stdin.next();
 
         printSelectedElementInMenu(lib, customer, selectedElement);
@@ -163,7 +164,8 @@ public class BibliotecaApp {
 
         } else {
             System.out.println();
-            System.out.println(lib.invalidOptionMessage());
+            BibliotecaAppView bibliotecaAppView = new BibliotecaAppView();
+            bibliotecaAppView.printInvalidOptionMessage();
 
             printMainMenu(lib, customer);
         }

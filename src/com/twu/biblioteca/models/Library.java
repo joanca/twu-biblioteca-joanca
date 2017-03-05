@@ -62,18 +62,6 @@ public class Library {
         return this.booksList.size() > 0;
     }
 
-    public String selectElementInMenuMessage() {
-        return "Select an element of the menu: ";
-    }
-
-    public String enterYourChoiceMessage() {
-        return "Enter your choice: ";
-    }
-
-    public String invalidOptionMessage() {
-        return "Select a valid option!";
-    }
-
     public boolean isCustomer(Customer customer) {
         return this.customersList.containsValue(customer);
     }

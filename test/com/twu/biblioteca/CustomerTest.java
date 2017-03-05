@@ -141,27 +141,4 @@ public class CustomerTest {
 
         assertFalse(customer.hasBooks());
     }
-
-    @Test
-    public void has_any_media_should_return_true_after_add_media() {
-        Customer customer = new Customer("Customer", 1);
-
-        customer.addMedia(new Movie("Some movie", 1, 1, "some person"));
-
-        assertTrue(customer.hasAnyMedia());
-    }
-
-    @Test
-    public void has_any_media_should_return_false_after_returning_media() {
-        Library library = new Library(new Librarian("Librarian", 1));
-        Customer customer = new Customer("Customer", 1);
-        Media book = new Book("Some book", 1, 1, "author");
-
-        library.addMedia(book);
-        library.newCustomer(customer);
-
-        library.returnMedia(customer, book);
-
-        assertFalse(customer.hasAnyMedia());
-    }
 }

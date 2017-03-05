@@ -10,31 +10,6 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class LibraryTest {
-
-    @Test
-    public void select_element_in_menu() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.selectElementInMenuMessage();
-
-        assertEquals("Select an element of the menu: ", message);
-    }
-
-    @Test
-    public void invalid_option_message() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.invalidOptionMessage();
-
-        assertEquals("Select a valid option!", message);
-    }
-
-    @Test
-    public void enter_your_choice_message() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.enterYourChoiceMessage();
-
-        assertEquals("Enter your choice: ", message);
-    }
-
     @Test
     public void get_books_should_return_map_of_books() {
         Map<Integer, Media> booksList = new HashMap<Integer, Media>();
