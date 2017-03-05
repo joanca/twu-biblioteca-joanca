@@ -1,11 +1,10 @@
 package com.twu.biblioteca.models;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 public class Login {
-    private User loggedInUser;
+    private User loggedInUser = null;
     private Map<String, User> customerList, librarianList;
 
     public Login() {
@@ -26,6 +25,10 @@ public class Login {
         this.librarianList.put(user.getUserID(), user);
     }
 
+    public boolean isUserLoggedIn() {
+        return this.loggedInUser != null;
+    }
+
     public boolean isUser(User user) {
         return this.isCustomer(user) || this.isLibrarian(user);
     }
@@ -42,8 +45,10 @@ public class Login {
         return this.customerList.containsKey(libraryNumber);
     }
 
-    private boolean isLibrarian(String libraryNumber) {
-        return this.librarianList.containsKey(libraryNumber);
+    public boolean isValidLibraryNumber(String number) {
+        String pattern = "\\d{3}-\\d{4}";
+
+        return number.matches(pattern);
     }
 
     private User getUser(String libraryNumber, String password) {
@@ -56,17 +61,16 @@ public class Login {
         return null;
     }
 
-    public boolean isValidLibraryNumber(String number) {
-        String pattern = "\\d{3}-\\d{4}";
-
-        return number.matches(pattern);
+    public User getLoggedInUser() {
+        return this.loggedInUser;
     }
 
-    public User logInUser(String libraryNumber, String password) {
+    public boolean logInUser(String libraryNumber, String password) {
         if(this.isValidLibraryNumber(libraryNumber)) {
-            return this.getUser(libraryNumber, password);
+            this.loggedInUser = this.getUser(libraryNumber, password);
+            return this.isUserLoggedIn();
         }
 
-        return null;
+        return this.isUserLoggedIn();
     }
 }

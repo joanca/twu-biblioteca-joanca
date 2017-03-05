@@ -29,7 +29,7 @@ public class Library {
         this.moviesList.put(movie.getID(), movie);
     }
 
-    public void newCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         this.customersList.put(customer.getUserID(), customer);
     }
 

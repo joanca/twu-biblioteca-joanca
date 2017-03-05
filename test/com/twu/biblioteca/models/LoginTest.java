@@ -1,6 +1,7 @@
 package com.twu.biblioteca.models;
 
 import org.junit.Test;
+import sun.rmi.runtime.Log;
 
 import static org.junit.Assert.*;
 
@@ -100,33 +101,52 @@ public class LoginTest {
 
         login.addUser(user);
 
-        assertEquals(user, login.logInUser("123-4567", "password"));
+        assertTrue(login.logInUser("123-4567", "password"));
     }
 
     @Test
-    public void log_in_user_should_be_null_with_bad_library_number() {
+    public void log_in_user_should_be_false_with_bad_library_number() {
         Login login = new Login();
         User user = new Customer("123-4567", "password", "Customer", "some@mail.com", "+56 9 12345678");
 
         login.addUser(user);
 
-        assertNull(login.logInUser("123-4557", "password"));
+        assertFalse(login.logInUser("123-4557", "password"));
     }
 
     @Test
-    public void log_in_user_should_return_null_with_bad_password() {
+    public void log_in_user_should_return_false_with_bad_password() {
         Login login = new Login();
         User user = new Librarian("123-3456", "password", "Librarian", "some@mail.com", "+56 9 12345678");
 
         login.addUser(user);
 
-        assertNull(login.logInUser("123-3456", "pasword"));
+        assertFalse(login.logInUser("123-3456", "pasword"));
     }
 
     @Test
-    public void log_in_user_should_return_null_when_there_are_no_users() {
+    public void log_in_user_should_return_false_when_there_are_no_users() {
         Login login = new Login();
 
-        assertNull(login.logInUser("123-2345", "pasword"));
+        assertFalse(login.logInUser("123-2345", "pasword"));
+    }
+
+    @Test
+    public void is_user_logged_in_should_return_false() {
+        Login login = new Login();
+
+        assertFalse(login.isUserLoggedIn());
+    }
+
+    @Test
+    public void is_user_logged_in_should_return_true_after_logging_in_user() {
+        Login login = new Login();
+        User user = new Customer("123-4567", "password", "Customer", "some@mail.com", "232");
+
+        login.addUser(user);
+
+        login.logInUser("123-4567", "password");
+
+        assertTrue(login.isUserLoggedIn());
     }
 }

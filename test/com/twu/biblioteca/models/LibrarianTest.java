@@ -26,7 +26,7 @@ public class LibrarianTest {
         Media media = new Media("Some media", 1, 1, "some person");
 
         lib.addMedia(media);
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         assertTrue(lib.checkOutMedia(customer, media));
 
@@ -39,7 +39,7 @@ public class LibrarianTest {
         Librarian librarian = new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
 
         Library lib = new Library(librarian);
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         Media media = new Media("Some media",1, 1, "some person");
 

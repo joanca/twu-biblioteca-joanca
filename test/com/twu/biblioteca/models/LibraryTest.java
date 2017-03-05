@@ -62,7 +62,7 @@ public class LibraryTest {
 
         Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
         lib.checkOutMedia(customer, book);
 
         assertEquals(true, lib.returnMedia(customer, book));
@@ -87,7 +87,7 @@ public class LibraryTest {
         Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
         lib.addMedia(media);
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         assertEquals(true, lib.checkOutMedia(customer, media));
     }
@@ -99,7 +99,7 @@ public class LibraryTest {
 
         Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
 
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         assertTrue(lib.isCustomer(customer));
     }

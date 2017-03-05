@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controllers.BibliotecaAppController;
+import com.twu.biblioteca.controllers.LoginController;
 import com.twu.biblioteca.models.*;
 
 import java.util.*;
@@ -42,14 +43,19 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) {
-        Library library = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
         Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
+        Librarian librarian = new Librarian("234-4534", "1234", "Librarian", "some@mail.com", "+56 9 12345678");
+        Library library = new Library(librarian);
+
+        Login login = new Login();
+        login.addUser(customer);
+        login.addUser(librarian);
 
         addMediaToLibrary(library);
-        library.newCustomer(customer);
+        library.addCustomer(customer);
 
-        BibliotecaAppController bibliotecaAppController = new BibliotecaAppController(library, customer);
+        LoginController loginController = new LoginController(login, library, customer);
 
-        bibliotecaAppController.printMainMenu();
+        loginController.loginFields();
     }
 }

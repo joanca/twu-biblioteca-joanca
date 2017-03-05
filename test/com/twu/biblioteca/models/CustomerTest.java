@@ -24,7 +24,7 @@ public class CustomerTest {
         lib.addMedia(book);
 
         Customer customer = new Customer("123-1234", "1234", "Customer", "some@mail.com", "+56 9 12345678");
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         lib.checkOutMedia(customer, book);
 
@@ -64,7 +64,7 @@ public class CustomerTest {
         Book book = new Book("Some book", 1, 1, "some person");
 
         Library lib = new Library(new Librarian("123-1234", "1234", "Librarian", "some@mail.com", "+56 9 12345678"));
-        lib.newCustomer(customer);
+        lib.addCustomer(customer);
 
         lib.addMedia(book);
 
