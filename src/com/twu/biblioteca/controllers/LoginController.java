@@ -12,10 +12,9 @@ public class LoginController {
     private Library library;
     private Customer customer;
 
-    public LoginController(Login login, Library library, Customer customer) {
+    public LoginController(Login login, Library library) {
         this.login = login;
         this.library = library;
-        this.customer = customer;
     }
 
     public void loginFields() {
@@ -33,6 +32,10 @@ public class LoginController {
 
             loginView.printLogInUser(libraryNumber, password);
         }
+
+        BibliotecaAppController bibliotecaAppController = new BibliotecaAppController(this.library, this.login.getLoggedInUser());
+
+        bibliotecaAppController.printMainMenu();
 
     }
 }

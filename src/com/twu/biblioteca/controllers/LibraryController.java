@@ -1,8 +1,11 @@
 package com.twu.biblioteca.controllers;
 
 import com.twu.biblioteca.models.Customer;
+import com.twu.biblioteca.models.Librarian;
 import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.models.User;
 import com.twu.biblioteca.views.CustomerView;
+import com.twu.biblioteca.views.LibrarianView;
 import com.twu.biblioteca.views.LibraryView;
 
 import java.util.Scanner;
@@ -10,10 +13,13 @@ import java.util.Scanner;
 public class LibraryController {
     private Library library;
     private Customer customer;
+    private Librarian librarian;
 
-    public LibraryController(Library library, Customer customer) {
+    public LibraryController(Library library, User customer) {
         this.library = library;
-        this.customer = customer;
+
+        if(customer instanceof Customer) this.customer = (Customer) customer;
+        else this.librarian = (Librarian) customer;
     }
 
     public void selectedListMedia(String mediaType) {
@@ -29,6 +35,13 @@ public class LibraryController {
 
         if(mediaType.equals("c")) this.selectedReturnBooks(libraryView, customerView);
         else if(mediaType.equals("d")) this.selectedReturnMovies(libraryView, customerView);
+    }
+
+    public void selectedListCheckedOutBooks() {
+        LibraryView libraryView = new LibraryView(this.library);
+        LibrarianView librarianView = new LibrarianView(this.library, this.librarian);
+
+
     }
 
     private void selectedListBooks(LibraryView libraryView) {

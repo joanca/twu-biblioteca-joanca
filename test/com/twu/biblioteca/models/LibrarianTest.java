@@ -47,9 +47,4 @@ public class LibrarianTest {
 
         assertTrue(librarian.customerCanCheckOut(customer, media));
     }
-
-    @Test
-    public void check_out_media() {
-
-    }
 }

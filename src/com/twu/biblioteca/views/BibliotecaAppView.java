@@ -2,16 +2,15 @@ package com.twu.biblioteca.views;
 
 import com.twu.biblioteca.models.Customer;
 import com.twu.biblioteca.models.Library;
-
-import java.util.Scanner;
+import com.twu.biblioteca.models.User;
 
 public class BibliotecaAppView {
     private Library library;
-    private Customer customer;
+    private User user;
 
-    public BibliotecaAppView(Library library, Customer customer) {
+    public BibliotecaAppView(Library library, User user) {
         this.library = library;
-        this.customer = customer;
+        this.user = user;
     }
 
     public void printSelectElementInMenuMessage() {
@@ -27,6 +26,22 @@ public class BibliotecaAppView {
     }
 
     public void printMenuElements() {
+        if(this.user instanceof Customer) this.printMenuElementsForCustomers();
+        else this.printMenuElementsForLibrarian();
+    }
+
+    private void printMenuElementsForLibrarian() {
+        String[] elements = new String[2];
+
+        elements[0] = "[a] Checked Out Books";
+        elements[1] = "[q] Quit";
+
+        for(String element: elements) {
+            System.out.println(element);
+        }
+    }
+
+    private void printMenuElementsForCustomers() {
         String[] elements = new String[5];
 
         elements[0] = "[a] List Books";
@@ -35,9 +50,11 @@ public class BibliotecaAppView {
         elements[3] = "[d] Return Movies";
         elements[4] = "[q] Quit";
 
+        Customer customer = (Customer) user;
+
         for(int i = 0; i < elements.length; i++) {
-            if(!this.customer.hasBooks() && (i == 2)) continue;
-            if(!this.customer.hasMovies() && (i == 3)) continue;
+            if(!customer.hasBooks() && (i == 2)) continue;
+            if(!customer.hasMovies() && (i == 3)) continue;
             System.out.println(elements[i]);
         }
     }

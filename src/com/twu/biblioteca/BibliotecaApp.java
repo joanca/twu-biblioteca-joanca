@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.controllers.BibliotecaAppController;
 import com.twu.biblioteca.controllers.LoginController;
 import com.twu.biblioteca.models.*;
 
@@ -54,7 +53,7 @@ public class BibliotecaApp {
         addMediaToLibrary(library);
         library.addCustomer(customer);
 
-        LoginController loginController = new LoginController(login, library, customer);
+        LoginController loginController = new LoginController(login, library);
 
         loginController.loginFields();
     }

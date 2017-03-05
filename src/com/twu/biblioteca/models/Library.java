@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Library {
     private Map<Integer, Media> booksList, moviesList;
+    private Map<Media, Customer> checkedOutBooks, checkedOutMovies;
     private Map<String, User> customersList;
     private Librarian librarian;
 
@@ -12,6 +13,8 @@ public class Library {
         this.booksList = new HashMap<Integer, Media>();
         this.moviesList = new HashMap<Integer, Media>();
         this.customersList = new HashMap<String, User>();
+        this.checkedOutBooks = new HashMap<Media, Customer>();
+        this.checkedOutMovies = new HashMap<Media, Customer>();
 
         this.librarian.setLibrary(this);
     }
@@ -33,6 +36,19 @@ public class Library {
         this.customersList.put(customer.getUserID(), customer);
     }
 
+    public void addCheckedOutMedia(Media media, Customer customer) {
+        if(media instanceof Book) this.addCheckedOutBook(media, customer);
+        else this.addCheckedOutMovie(media, customer);
+    }
+
+    private void addCheckedOutBook(Media media, Customer customer) {
+        this.checkedOutBooks.put(media, customer);
+    }
+
+    private void addCheckedOutMovie(Media media, Customer customer) {
+        this.checkedOutMovies.put(media, customer);
+    }
+
     public Map<Integer, Media> getBooks(){
         return this.booksList;
     }
@@ -41,11 +57,32 @@ public class Library {
         return this.moviesList;
     }
 
+    public Map<Media, Customer> getCheckedOutBooks() {
+        return this.checkedOutBooks;
+    }
+
+    public Map<Media, Customer> getCheckedOutMovies() {
+        return this.checkedOutMovies;
+    }
+
+    public void popCheckedOutMedia(Media media) {
+        if(media instanceof Book) this.popCheckedOutBook(media);
+        else this.popCheckedOutMovie(media);
+    }
+
+    private void popCheckedOutBook(Media media) {
+        this.checkedOutBooks.remove(media);
+    }
+
+    private void popCheckedOutMovie(Media media) {
+        this.checkedOutMovies.remove(media);
+    }
+
     public Media getBook(int bookId) {
         return this.booksList.get(bookId);
     }
 
-    public  Media getMovie(int movieID) {
+    public Media getMovie(int movieID) {
         return this.moviesList.get(movieID);
     }
 
@@ -66,6 +103,8 @@ public class Library {
             media.changeStatus();
             customer.addMedia(media);
 
+            this.addCheckedOutMedia(media, customer);
+
             return true;
         }
 
@@ -76,6 +115,8 @@ public class Library {
         if(this.librarian.customerHasCheckedOut(customer, media)) {
             media.changeStatus();
             customer.popMedia(media);
+
+            this.popCheckedOutMedia(media);
 
             return true;
         }
