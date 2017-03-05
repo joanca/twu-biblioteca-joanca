@@ -54,12 +54,12 @@ public class Library {
         return this.booksList.get(bookId);
     }
 
-    public boolean hasBooks() {
-        return this.booksList.size() > 0;
+    public  Media getMovie(int movieID) {
+        return this.moviesList.get(movieID);
     }
 
-    public String getWelcomeMessage() {
-        return "Welcome to Biblioteca!";
+    public boolean hasBooks() {
+        return this.booksList.size() > 0;
     }
 
     public String selectElementInMenuMessage() {

@@ -43,15 +43,17 @@ public class BibliotecaApp {
     }
 
     private static void printMenuElements(Customer customer) {
-        String[] elements = new String[4];
+        String[] elements = new String[5];
 
         elements[0] = "[a] List Books";
         elements[1] = "[b] List Movies";
-        elements[2] = "[r] Return Media";
-        elements[3] = "[q] Quit";
+        elements[2] = "[c] Return Books";
+        elements[3] = "[d] Return Movies";
+        elements[4] = "[q] Quit";
 
         for(int i = 0; i < elements.length; i++) {
-            if(!customer.hasAnyMedia() && (i == 1)) continue;
+            if(!customer.hasBooks() && (i == 2)) continue;
+            if(!customer.hasMovies() && (i == 3)) continue;
             System.out.println(elements[i]);
         }
     }
@@ -79,9 +81,7 @@ public class BibliotecaApp {
             libraryView.printAvailableBooks();
 
             String choice = stdin.next();
-            if (choice.equals("q")) {
-                break;
-            }
+            if (choice.equals("q")) break;
 
             int bookId = Integer.parseInt(choice);
 
@@ -89,23 +89,55 @@ public class BibliotecaApp {
         }
     }
 
+    private static void selectedListMovies(Library lib, Customer customer) {
+        Scanner stdin = new Scanner(System.in);
+        LibraryView libraryView = new LibraryView(lib);
+
+        while(true) {
+            libraryView.printAvailableMovies();
+
+            String choice = stdin.next();
+            if(choice.equals("q")) break;
+
+            int movieId = Integer.parseInt(choice);
+
+            libraryView.printCheckOutMedia(customer, lib.getMovie(movieId));
+        }
+    }
+
     private static void selectedReturnBooks(Library lib, Customer customer) {
         Scanner stdin = new Scanner(System.in);
         CustomerView customerView = new CustomerView(customer);
+        LibraryView libraryView = new LibraryView(lib);
 
         while (customer.hasBooks()) {
             customerView.printBookList();
 
             String choice = stdin.next();
 
-            if (choice.equals("q")) {
-                break;
-            }
+            if (choice.equals("q")) break;
 
             int bookId = Integer.parseInt(choice);
 
-            LibraryView libraryView = new LibraryView(lib);
             libraryView.printReturnMedia(customer, lib.getBook(bookId));
+        }
+    }
+
+    private static void selectedReturnMovies(Library lib, Customer customer) {
+        Scanner stdin = new Scanner(System.in);
+        CustomerView customerView = new CustomerView(customer);
+        LibraryView libraryView = new LibraryView(lib);
+
+        while(customer.hasMovies()) {
+            customerView.printMovieList();
+
+            String choice = stdin.next();
+
+            if (choice.equals("q")) break;
+
+            int movieId = Integer.parseInt(choice);
+
+            libraryView.printReturnMedia(customer, lib.getMovie(movieId));
         }
     }
 
@@ -116,7 +148,15 @@ public class BibliotecaApp {
 
             printMainMenu(lib, customer);
         } else if(selectedElement.equals("b")) {
+            selectedListMovies(lib, customer);
+
+            printMainMenu(lib, customer);
+        } else if(selectedElement.equals("c")) {
             selectedReturnBooks(lib, customer);
+
+            printMainMenu(lib, customer);
+        } else if(selectedElement.equals("d")) {
+            selectedReturnMovies(lib, customer);
 
             printMainMenu(lib, customer);
         } else if(selectedElement.equals("q")) {
@@ -131,15 +171,13 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         Library lib = new Library(new Librarian("Librarian", 1));
-
-        addMediaToLibrary(lib);
-
+        LibraryView libraryView = new LibraryView(lib);
         Customer customer = new Customer("Customer", 1);
 
+        addMediaToLibrary(lib);
         lib.newCustomer(customer);
 
-        System.out.println(lib.getWelcomeMessage());
-
+        libraryView.printWelcomeMessage();
         printMainMenu(lib, customer);
     }
 }

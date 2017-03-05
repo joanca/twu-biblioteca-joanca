@@ -12,13 +12,6 @@ import static org.junit.Assert.*;
 public class LibraryTest {
 
     @Test
-    public void get_welcome_message_should_return_greetings() {
-        Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
-        String message = lib.getWelcomeMessage();
-        assertEquals("Welcome to Biblioteca!", message);
-    }
-
-    @Test
     public void select_element_in_menu() {
         Library lib = new Library(new HashMap<Integer, Media>(), new Librarian("Librarian", 1));
         String message = lib.selectElementInMenuMessage();
@@ -150,4 +143,5 @@ public class LibraryTest {
 
         assertFalse(lib.isCustomer(customer));
     }
+
 }
