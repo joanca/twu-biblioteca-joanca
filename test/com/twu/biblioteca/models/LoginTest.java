@@ -1,7 +1,6 @@
 package com.twu.biblioteca.models;
 
 import org.junit.Test;
-import sun.rmi.runtime.Log;
 
 import static org.junit.Assert.*;
 

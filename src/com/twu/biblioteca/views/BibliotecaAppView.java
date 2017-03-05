@@ -42,13 +42,14 @@ public class BibliotecaAppView {
     }
 
     private void printMenuElementsForCustomers() {
-        String[] elements = new String[5];
+        String[] elements = new String[6];
 
         elements[0] = "[a] List Books";
         elements[1] = "[b] List Movies";
         elements[2] = "[c] Return Books";
         elements[3] = "[d] Return Movies";
-        elements[4] = "[q] Quit";
+        elements[4] = "[i] User Information";
+        elements[5] = "[q] Quit";
 
         Customer customer = (Customer) user;
 

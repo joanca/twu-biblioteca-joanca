@@ -38,4 +38,12 @@ public class CustomerView {
         System.out.println();
         System.out.print("Which book do you want to check out? (ID) (q to main menu) ");
     }
+
+    public void printUserInformation() {
+        System.out.println();
+
+        System.out.println("Name: " + this.customer.getName());
+        System.out.println("Email: " + this.customer.getEmail());
+        System.out.println("Phone Number: " + this.customer.getPhoneNumber());
+    }
 }

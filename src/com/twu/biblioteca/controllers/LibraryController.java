@@ -38,10 +38,9 @@ public class LibraryController {
     }
 
     public void selectedListCheckedOutBooks() {
-        LibraryView libraryView = new LibraryView(this.library);
         LibrarianView librarianView = new LibrarianView(this.library, this.librarian);
 
-
+        librarianView.printCheckedOutBooks();
     }
 
     private void selectedListBooks(LibraryView libraryView) {
@@ -102,5 +101,11 @@ public class LibraryController {
 
             libraryView.printReturnMedia(this.customer, this.library.getMovie(movieID));
         }
+    }
+
+    public void selectedUserInformation() {
+        CustomerView customerView = new CustomerView(this.customer);
+
+        customerView.printUserInformation();
     }
 }

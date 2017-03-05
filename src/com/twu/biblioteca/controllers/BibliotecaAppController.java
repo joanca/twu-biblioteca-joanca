@@ -1,6 +1,5 @@
 package com.twu.biblioteca.controllers;
 
-import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.models.Customer;
 import com.twu.biblioteca.models.Library;
 import com.twu.biblioteca.models.User;
@@ -32,6 +31,10 @@ public class BibliotecaAppController {
             this.printMainMenu();
         } else if(choice.equals("c") || choice.equals("d")) {
             libraryController.selectedReturnMedia(choice);
+
+            printMainMenu();
+        } else if(choice.equals("i")) {
+            libraryController.selectedUserInformation();
 
             printMainMenu();
         } else if(choice.equals("q")) {
