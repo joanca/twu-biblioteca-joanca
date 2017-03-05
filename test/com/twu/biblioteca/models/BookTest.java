@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
 
 import com.twu.biblioteca.models.Book;
 import org.junit.Test;
